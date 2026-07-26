@@ -16,8 +16,9 @@ import { about} from './documents/about'
 import { contact } from './documents/contact'
 import { privacyPolicy } from './documents/privacyPolicy'
 import { siteSettings } from './documents/siteSettings'
+import { seo } from './objects/seo'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [localeString, localeText, localePortableText, headingParagraphItem, faqItem, service, serviceCategory, work, client, article, product, home, about, contact, privacyPolicy, siteSettings ],
+  types: [localeString, localeText, localePortableText, seo, headingParagraphItem, faqItem, service, serviceCategory, work, client, article, product, home, about, contact, privacyPolicy, siteSettings ],
 }

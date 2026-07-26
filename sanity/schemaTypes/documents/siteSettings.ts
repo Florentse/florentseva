@@ -5,10 +5,33 @@ export const siteSettings = defineType({
   title: 'Site Settings',
   type: 'document',
   groups: [
+    {name: 'general', title: 'General'},
     {name: 'header', title: 'Header'},
     {name: 'footer', title: 'Footer'},
   ],
   fields: [
+    defineField({
+      name: 'favicon',
+      title: 'Favicon',
+      description: 'Square image, ideally 512×512px (used to generate all favicon sizes)',
+      type: 'image',
+      group: 'general',
+    }),
+    defineField({
+      name: 'appleTouchIcon',
+      title: 'Apple Touch Icon (web clip)',
+      description: '180×180px, no transparency — shown when saved to home screen on iOS',
+      type: 'image',
+      group: 'general',
+    }),
+    defineField({
+      name: 'defaultSeo',
+      title: 'Default SEO & Open Graph',
+      description: 'Fallback used when a page has no SEO fields filled in',
+      type: 'seo',
+      group: 'general',
+    }),
+
     defineField({
       name: 'logoText',
       title: 'Logo Text',
