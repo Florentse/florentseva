@@ -1,0 +1,50 @@
+section {
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+  padding-top: var(--section-padding-y-regular);
+  padding-bottom: var(--section-padding-y-regular);
+}
+
+/* Section vertical padding — top */
+.pt-large {
+  padding-top: var(--section-padding-y-large);
+}
+.pt-regular {
+  padding-top: var(--section-padding-y-regular);
+}
+.pt-small {
+  padding-top: var(--section-padding-y-small);
+}
+
+/* Section vertical padding — bottom */
+.pb-large {
+  padding-bottom: var(--section-padding-y-large);
+}
+.pb-regular {
+  padding-bottom: var(--section-padding-y-regular);
+}
+.pb-small {
+  padding-bottom: var(--section-padding-y-small);
+}
+
+/* Inner padding (cards, blocks) — all sides */
+.inner-padding-large {
+  padding: var(--inner-padding-large);
+}
+.inner-padding-regular {
+  padding: var(--inner-padding-regular);
+}
+.inner-padding-small {
+  padding: var(--inner-padding-small);
+}
+
+/* Gap (flex/grid) */
+.gap-large {
+  gap: var(--gap-large);
+}
+.gap-regular {
+  gap: var(--gap-regular);
+}
+.gap-small {
+  gap: var(--gap-small);
+}

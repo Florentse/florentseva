@@ -1,0 +1,90 @@
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+:root {
+  /* Font families */
+  --font-family-title: 'Gilroy', sans-serif;
+  --font-family-body: 'Gilroy', sans-serif;
+
+  /* Font weight */
+  --font-weight-default: 400;
+
+  /* Line height */
+  --line-height-title: 120%;
+  --line-height-body: 140%;
+
+  /* Desktop */
+  --font-size-title-l: 4rem;
+  --font-size-title-m: 3rem;
+  --font-size-title-s: 1.25rem;
+
+  --font-size-body-base: 1.15rem;
+  --font-size-body-large: 1.25rem;
+  --font-size-body-small: 1rem;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  :root {
+    --font-size-title-l: 3.5rem;
+    --font-size-title-m: 2.5rem;
+    --font-size-title-s: 1.15rem;
+
+    --font-size-body-base: 1rem;
+    --font-size-body-large: 1.15rem;
+    --font-size-body-small: 0.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root {
+    --font-size-title-l: 3rem;
+    --font-size-title-m: 2rem;
+    --font-size-title-s: 1rem;
+
+    --font-size-body-base: 1rem;
+    --font-size-body-large: 1.15rem;
+    --font-size-body-small: 0.75rem;
+  }
+}
+

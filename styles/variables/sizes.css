@@ -1,0 +1,62 @@
+:root {
+  --size-0: 0rem;
+  --size-4: 0.25rem;
+  --size-8: 0.5rem;
+  --size-12: 0.75rem;
+  --size-16: 1rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+  --size-28: 1.75rem;
+  --size-32: 2rem;
+  --size-40: 2.5rem;
+  --size-48: 3rem;
+  --size-56: 3.5rem;
+  --size-64: 4rem;
+  --size-80: 5rem;
+  --size-96: 6rem;
+  --size-120: 7.5rem;
+  --size-160: 10rem;
+  --size-192: 12rem;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  :root {
+    --size-4: 0rem;
+    --size-12: 0.5rem;
+    --size-16: 0.75rem;
+    --size-20: 1rem;
+    --size-24: 1.25rem;
+    --size-28: 1.5rem;
+    --size-32: 1.75rem;
+    --size-40: 2rem;
+    --size-48: 2.5rem;
+    --size-56: 3rem;
+    --size-64: 3.5rem;
+    --size-80: 4rem;
+    --size-96: 5rem;
+    --size-120: 6rem;
+    --size-160: 7.5rem;
+    --size-192: 10rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root {
+    --size-16: 0.5rem;
+    --size-20: 0.75rem;
+    --size-24: 1rem;
+    --size-28: 1.25rem;
+    --size-32: 1.5rem;
+    --size-40: 1.75rem;
+    --size-48: 2rem;
+    --size-56: 2.5rem;
+    --size-64: 3rem;
+    --size-80: 3.5rem;
+    --size-96: 4rem;
+    --size-120: 5rem;
+    --size-160: 6rem;
+    --size-192: 7.5rem;
+  }
+}

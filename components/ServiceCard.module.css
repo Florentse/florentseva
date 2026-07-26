@@ -1,0 +1,4 @@
+.card {
+    padding-top: var(--inner-padding-regular);
+    border-top: 1px solid var(--color-border-tertiary);
+}

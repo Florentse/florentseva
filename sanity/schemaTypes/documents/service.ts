@@ -31,12 +31,7 @@ export const service = defineType({
     defineField({
       name: 'shortDescription',
       title: 'Short Description',
-      type: 'localeText',
-      group: 'main',
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt (for listing card)',
+      description: 'Used in the service card, on the service page, and as SEO description',
       type: 'localeText',
       group: 'main',
     }),
@@ -80,9 +75,21 @@ export const service = defineType({
     defineField({
       name: 'pricing',
       title: 'Pricing Tiers',
-      description: 'Up to 3 tiers — structure TBD, coming back to this later',
+      description: 'Up to 3 tiers. The lowest price here is shown as the starting price on the card.',
       type: 'array',
-      of: [{type: 'object', name: 'pricingTier', fields: [{name: 'title', type: 'string'}]}],
+      of: [
+        {
+          type: 'object',
+          name: 'pricingTier',
+          fields: [
+            defineField({name: 'title', title: 'Tier Title', type: 'string'}),
+            defineField({name: 'price', title: 'Price', type: 'number'}),
+          ],
+          preview: {
+            select: {title: 'title', subtitle: 'price'},
+          },
+        },
+      ],
       validation: (Rule) => Rule.max(3),
       group: 'pricing',
     }),

@@ -1,0 +1,15 @@
+:root {
+  /* Section */
+  --section-padding-x: var(--size-20);
+  --section-padding-y-large: var(--size-160);
+  --section-padding-y-regular: var(--size-120);
+  --section-padding-y-small: var(--size-40);
+  /* Inner padding (cards, blocks) */
+  --inner-padding-large: var(--size-40);
+  --inner-padding-regular: var(--size-20);
+  --inner-padding-small: var(--size-16);
+  /* Gaps */
+  --gap-large: var(--size-40);
+  --gap-regular: var(--size-20);
+  --gap-small: var(--size-16);
+}
