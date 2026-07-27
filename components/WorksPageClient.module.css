@@ -1,0 +1,64 @@
+.worksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: var(--gap-large);
+  column-gap: var(--gap-regular);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.worksHeading {
+  grid-column: span 1;
+
+  @media (min-width: 768px) {
+    grid-column: span 8;
+  }
+
+  @media (min-width: 1024px) {
+    grid-column: span 12;
+  }
+}
+
+.worksAside {
+  grid-column: span 1;
+  position: relative;
+  align-self: start;
+
+  @media (min-width: 768px) {
+    grid-column: span 2;
+    position: sticky;
+    top: var(--size-96);
+  }
+
+  @media (min-width: 1024px) {
+    grid-column: span 3;
+  }
+}
+
+.worksList {
+  grid-column: span 2;
+  overflow: visible;
+
+  @media (min-width: 768px) {
+    grid-column: span 6;
+    overflow: hidden;
+  }
+
+  @media (min-width: 1024px) {
+    grid-column: span 9;
+  }
+}
+
+.worksListingSection {
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    overflow: visible;
+  }
+}

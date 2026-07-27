@@ -12,6 +12,13 @@ export const service = defineType({
     {name: 'faq', title: 'FAQ'},
     {name: 'related', title: 'Related'},
   ],
+  orderings: [
+    {
+      title: 'Sort Order',
+      name: 'sortOrderAsc',
+      by: [{field: 'sortOrder', direction: 'asc'}],
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -26,6 +33,13 @@ export const service = defineType({
       type: 'slug',
       options: {source: 'title.en'},
       validation: (Rule) => Rule.required(),
+      group: 'main',
+    }),
+    defineField({
+      name: 'sortOrder',
+      title: 'Sort Order',
+      description: 'Controls the order of services in filters and listings (ascending)',
+      type: 'number',
       group: 'main',
     }),
     defineField({

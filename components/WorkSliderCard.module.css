@@ -1,0 +1,71 @@
+.worksItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  min-width: 0;
+  width: 100%;
+}
+
+.worksItem :global(.swiper) {
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .worksItem .image {
+    filter: grayscale(1);
+  }
+
+  .worksItem:hover .image {
+    filter: grayscale(0);
+  }
+}
+
+.worksImageWrap {
+  width: 100%;
+  max-width: 22vw;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--color-bg-glass);
+  padding: var(--gap-regular);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.worksInfoWrap {
+  width: 100%;
+}
+
+.worksInfoGrid {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-small);
+}
+
+.worksInfoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.servicesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.swiper {
+  cursor: grab;
+}
+
+.swiper:active {
+  cursor: grabbing;
+}

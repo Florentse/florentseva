@@ -26,6 +26,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-family: var(--font-family-body);
 }
 
 h1,
@@ -86,4 +87,8 @@ p {
 
 .font-weight-bold {
   font-weight: 700;
+}
+
+.text-transform-uppercase {
+  text-transform: uppercase;
 }

@@ -14,7 +14,13 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       S.documentTypeListItem('work').title('Works'),
       S.documentTypeListItem('client').title('Clients'),
-      S.documentTypeListItem('service').title('Services'),
+      S.listItem()
+        .title('Services')
+        .child(
+          S.documentTypeList('service')
+            .title('Services')
+            .defaultOrdering([{field: 'sortOrder', direction: 'asc'}]),
+        ),
       S.documentTypeListItem('serviceCategory').title('Service Categories'),
       S.documentTypeListItem('product').title('Products'),
       S.documentTypeListItem('article').title('Blog'),

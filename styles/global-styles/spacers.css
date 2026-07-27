@@ -39,6 +39,10 @@ section {
 }
 
 /* Gap (flex/grid) */
+.gap-huge {
+  gap: var(--gap-huge);
+}
+
 .gap-large {
   gap: var(--gap-large);
 }

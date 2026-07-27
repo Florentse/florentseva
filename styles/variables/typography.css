@@ -55,11 +55,11 @@
   /* Desktop */
   --font-size-title-l: 4rem;
   --font-size-title-m: 3rem;
-  --font-size-title-s: 1.25rem;
+  --font-size-title-s: 1.5rem;
 
   --font-size-body-base: 1.15rem;
-  --font-size-body-large: 1.25rem;
-  --font-size-body-small: 1rem;
+  --font-size-body-large: 1.5rem;
+  --font-size-body-small: 0.85rem;
 }
 
 /* Tablet */

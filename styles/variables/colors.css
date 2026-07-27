@@ -27,6 +27,7 @@
   --color-bg-primary: var(--base-light);
   --color-bg-secondary: var(--grey-300);
   --color-bg-tertiary: var(--grey-500);
+  --color-bg-glass: color-mix(in srgb, var(--base-dark) 5%, transparent);
   --color-bg-accent: var(--base-brand);
 
   --color-border-primary: var(--base-dark);
@@ -45,6 +46,7 @@
   --color-bg-primary: var(--base-dark);
   --color-bg-secondary: var(--grey-800);
   --color-bg-tertiary: var(--grey-600);
+  --color-bg-glass: color-mix(in srgb, var(--base-light) 5%, transparent);
   --color-bg-accent: var(--base-brand);
 
   --color-border-primary: var(--base-light);

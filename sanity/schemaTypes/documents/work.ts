@@ -70,8 +70,7 @@ export const work = defineType({
     defineField({
       name: 'stack',
       title: 'Stack',
-      type: 'array',
-      of: [{type: 'string'}],
+      type: 'string',
       group: 'meta',
     }),
     defineField({
@@ -150,22 +149,15 @@ defineField({
       name: 'sortOrder',
       title: 'Sort Order',
       type: 'number',
-      description: 'Lower numbers appear first',
-      group: 'card',
-    }),
-    defineField({
-      name: 'showOnHome',
-      title: 'Show on Home page',
-      type: 'boolean',
-      initialValue: false,
+      description: 'Higher numbers appear first',
       group: 'card',
     }),
   ],
   orderings: [
     {
       title: 'Sort Order',
-      name: 'sortOrderAsc',
-      by: [{field: 'sortOrder', direction: 'asc'}],
+      name: 'sortOrderDesc',
+      by: [{field: 'sortOrder', direction: 'desc'}],
     },
   ],
   preview: {
