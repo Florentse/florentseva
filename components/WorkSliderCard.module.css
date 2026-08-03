@@ -39,6 +39,7 @@
 
 .worksInfoWrap {
   width: 100%;
+  row-gap: var(--gap-regular);
 }
 
 .worksInfoGrid {
@@ -68,4 +69,12 @@
 
 .swiper:active {
   cursor: grabbing;
+}
+
+@media (max-width: 767px) {
+  .worksImageWrap {
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    padding: var(--gap-large);
+  }
 }

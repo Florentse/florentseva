@@ -29,6 +29,7 @@
   grid-column: span 1;
   position: relative;
   align-self: start;
+  padding-left: var(--gap-small);
 
   @media (min-width: 768px) {
     grid-column: span 2;
@@ -38,6 +39,10 @@
 
   @media (min-width: 1024px) {
     grid-column: span 3;
+  }
+
+  @media (max-width: 767px) {
+    padding-top: var(--size-48);
   }
 }
 

@@ -1,0 +1,38 @@
+
+
+.blogTopGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--gap-regular);
+}
+
+.blogAside {
+    margin-top: var(--size-28);
+}
+
+.blogList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--gap-regular);
+  row-gap: var(--gap-large);
+  margin-top: var(--gap-regular);
+}
+
+@media (max-width: 1024px) {
+  .blogList,
+  .blogTopGrid  {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .blogList,
+  .blogTopGrid  {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .blogAside {
+    margin-top: var(--size-48);
+    align-items: flex-end;
+  }
+}

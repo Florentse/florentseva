@@ -1,7 +1,7 @@
 .filterList {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-small);
+  gap: var(--gap-tiny);
 }
 
 .filterButton {
@@ -9,10 +9,12 @@
     background: none;
     border: none;
     color: var(--color-text-secondary);
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-body-small);
     text-transform: uppercase;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
     cursor: pointer;
-    padding-left: var(--gap-small);
     transition: color 0.15s ease-in;
     position: relative;
     &::before {
@@ -20,9 +22,9 @@
       position: absolute;
       background-color: var(--color-text-accent);
       top: 0.25rem;
-      left: 0;
-      width: 0.5rem;
-      height: 0.5rem;
+      left: -0.8rem;
+      width: 0.4rem;
+      height: 0.4rem;
       border-radius: 50%;
       transform: scale(0);
       transform-origin: center;
@@ -34,5 +36,74 @@
   color: var(--color-text-primary);
   &::before {
     transform: scale(1);
+  }
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--gap-small);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0;
+  color: var(--color-text-secondary);
+}
+
+.search-input {
+  padding-left: 2rem;
+}
+
+.searchHints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  align-items: flex-start;
+}
+
+.searchHintButton {
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--font-family-body);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  text-transform: none;
+  cursor: pointer;
+  padding-left: 2rem;
+  transition: color 0.15s ease-in;
+  position: relative;
+  
+}
+
+.search-reset-button {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .searchHintButton:hover {
+    color: var(--color-text-primary);
+  }
+
+  .search-reset-button:hover {
+    color: var(--color-text-primary);
   }
 }

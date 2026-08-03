@@ -161,9 +161,17 @@ defineField({
     },
   ],
   preview: {
-    select: {
-      title: 'title',
-      media: 'heroImage',
-    },
+  select: {
+    title: 'title',
+    media: 'heroImage',
+    sortOrder: 'sortOrder',
   },
+  prepare({title, media, sortOrder}) {
+    return {
+      title,
+      media,
+      subtitle: `Sort order: ${sortOrder ?? '—'}`,
+    }
+  },
+},
 })

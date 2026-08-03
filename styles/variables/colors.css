@@ -21,7 +21,7 @@
   /* Semantic — regular section */
   --color-text-primary: var(--base-dark);
   --color-text-secondary: var(--grey-700);
-  --color-text-tertiary: var(--grey-400);
+  --color-text-tertiary: var(--grey-500);
   --color-text-accent: var(--base-brand);
 
   --color-bg-primary: var(--base-light);

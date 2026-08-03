@@ -13,4 +13,5 @@
   --gap-large: var(--size-40);
   --gap-regular: var(--size-20);
   --gap-small: var(--size-16);
+  --gap-tiny: var(--size-12);
 }

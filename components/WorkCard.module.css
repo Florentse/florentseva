@@ -1,12 +1,4 @@
-.worksList {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap-regular);
 
-  @media (max-width: 767px) {
-    grid-template-columns: 1fr;
-  }
-}
 
 .card {
   display: flex;

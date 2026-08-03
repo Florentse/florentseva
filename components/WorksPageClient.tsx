@@ -44,8 +44,6 @@ export default function WorksPageClient({
 
   return (
     <div className="page-wrapper">
-      <header>{/* Header */}</header>
-
       <main>
         <section id="works-listing" className={styles.worksListingSection}>
           <div className={styles.worksGrid}>

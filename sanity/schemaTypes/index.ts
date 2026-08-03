@@ -4,21 +4,35 @@ import { localeString } from './objects/localeString'
 import { localeText } from './objects/localeText'
 import { localePortableText } from './objects/localePortableText'
 import { headingParagraphItem } from './objects/headingParagraphItem'
-import { faqItem } from './objects/faqItem' 
-import { service } from './documents/service'
+import { formField } from './objects/formField'
+import { checklistBlock } from './objects/checklistBlock'
+import { productLinkBlock } from './objects/productLinkBlock'
+import { liveDemoBlock } from './objects/liveDemoBlock'
+import { pageAnatomyBlock } from './objects/pageAnatomyBlock'
+import { sitemapBuilderBlock } from './objects/sitemapBuilderBlock'
+import { scopeBuilderBlock } from './objects/scopeBuilderBlock'
 import { serviceCategory } from './documents/serviceCategory'
-import { work } from './documents/work'
+import { service } from './documents/service'
 import { client } from './documents/client'
+import { work } from './documents/work'
+import { blogCategory } from './documents/blogCategory'
+import { articleSection,  connectionsGridBlock } from './objects/articleSection'
 import { article } from './documents/article'
 import { product } from './documents/product' 
 import { home } from './documents/home' 
+import {servicesPage} from './documents/servicesPage'
 import { about} from './documents/about' 
-import { contact } from './documents/contact'
+
 import { privacyPolicy } from './documents/privacyPolicy'
 import { siteSettings } from './documents/siteSettings'
+
+
+import { faqItem } from './objects/faqItem' 
+import { contact } from './documents/contact'
 import { seo } from './objects/seo'
 
 
+
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [localeString, localeText, localePortableText, seo, headingParagraphItem, faqItem, service, serviceCategory, work, client, article, product, home, about, contact, privacyPolicy, siteSettings ],
+  types: [localeString, localeText, localePortableText, seo, headingParagraphItem, formField, faqItem, checklistBlock, productLinkBlock, liveDemoBlock, pageAnatomyBlock, sitemapBuilderBlock, scopeBuilderBlock, service, serviceCategory, work, client, blogCategory, articleSection,  connectionsGridBlock, article, product, home, servicesPage, about, contact, privacyPolicy, siteSettings ],
 }

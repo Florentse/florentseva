@@ -1,0 +1,64 @@
+/* ArticleCard.module.css */
+
+.articleCard {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageWrap {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articleCardTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-tiny);
+  padding-top: var(--inner-padding-regular);
+  position: relative;
+}
+
+.cardArrowIcon {
+  position: absolute;
+  right: 0;
+  top: var(--inner-padding-regular);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .image {
+    filter: grayscale(1);
+    transform: scale(1);
+    transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out;
+  }
+  .articleCard:hover .image {
+    filter: grayscale(0);
+    transform: scale(1.03);
+  }
+
+  .articleCard:hover .cardArrowIcon {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardArrowIcon {
+    display: none;
+  }
+}

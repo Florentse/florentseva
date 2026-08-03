@@ -15,13 +15,23 @@ section {
     display: flex;
     flex-direction: column;
     gap: var(--gap-large);
-    border-top: 1px solid var(--color-border-tertiary);
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: var(--section-padding-x);
+    right: var(--section-padding-x);
+    height: 1px;
+    background-color: var(--color-border-primary);
+    z-index: 1;
+  }
 }
 
 /* Flex utilities */
 .flex-col {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .flex-row {
@@ -66,5 +76,17 @@ section {
 
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none;
   }
 }

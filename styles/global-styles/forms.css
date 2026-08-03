@@ -1,0 +1,48 @@
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border-tertiary, #e5e5e5);
+    font-family: inherit;
+    font-size: var(--font-size-body-base);
+    color: var(--color-text-primary);
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+}
+
+select {
+    cursor: pointer;
+    accent-color: var(--color-border-primary, #000);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: none;
+    accent-color: var(--color-border-primary, #000);
+    cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    input:not([type="checkbox"]):not([type="radio"]):hover,
+    textarea:hover,
+    select:hover {
+        border-bottom-color: var(--color-border-secondary, #c0c0c0);
+    }
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-bottom-color: var(--color-border-primary, #000);
+}

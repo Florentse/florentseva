@@ -1,0 +1,134 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-regular);
+  padding: var(--inner-padding-small) var(--section-padding-x);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--color-bg-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--section-padding-x);
+    right: var(--section-padding-x);
+    height: 1px;
+    background-color: var(--color-border-primary);
+    z-index: 1;
+    transition: background-color 0.3s ease;
+  }
+}
+
+.logo {
+  font-size: var(--font-size-body-base);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-large);
+}
+
+.navLink {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-base);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.menuButton {
+  display: none;
+}
+
+.menuIcon {
+  font-family: 'Material Symbols Outlined';
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body-large);
+  transition: color 0.3s ease;
+}
+
+.menuIcon:last-child {
+  display: none;
+}
+
+.menuButton[aria-expanded="true"] .menuIcon:first-child {
+  display: none;
+}
+
+.menuButton[aria-expanded="true"] .menuIcon:last-child {
+  display: inline;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover {
+    color: var(--color-text-primary);
+  }
+}
+
+.navLinkActive {
+  color: var(--color-text-accent);
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding: 0.25rem var(--section-padding-x);
+    left: var(--section-padding-x);
+    right: var(--section-padding-x);
+    width: auto;
+    border: 1px solid var(--color-border-primary);
+    top: var(--section-padding-x);
+    border-radius: 0.5rem;
+    &::before {
+      left: 0;
+      right: 0;
+      opacity: 0;
+    }
+  }
+
+  .nav {
+    gap: var(--gap-regular);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 0.25rem;
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--gap-regular);
+    display: flex;
+    transform: translateY(-0.5rem);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .navOpen {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .menuButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

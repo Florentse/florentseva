@@ -4,32 +4,42 @@ import styles from "./page.module.css";
 import WorkCard from "@/components/WorkCard";
 import workCardStyles from "@/components/WorkCard.module.css";
 import ServiceCard from "@/components/ServiceCard";
+import ArticleCard from "@/components/ArticleCard";
 
-const HOME_QUERY = `*[_type == "home"][0]{
-  heroTitle,
-  worksHeading,
-  worksText,
-  worksLinkLabel,
-  selectedWorks[]->{ title, slug, cardImage, services[0]->{ title } },
-  clientsHeading,
-  selectedClients[]->{ name, logo },
-  servicesHeading,
-  servicesLinkLabel,
-  selectedServices[]->{ title, slug, shortDescription, pricing },  productsHeading,
-  productsLinkLabel,
-  selectedProducts[]->{ title, slug },
-  blogHeading,
-  blogLinkLabel,
-  selectedArticles[]->{ title, slug }
+const HOME_QUERY = `{
+  "home": *[_type == "home"][0]{
+    heroTitle,
+    worksHeading,
+    worksText,
+    worksLinkLabel,
+    selectedWorks[]->{ title, slug, cardImage, services[0]->{ title } },
+    clientsHeading,
+    selectedClients[]->{ name, logo },
+    servicesHeading,
+    servicesLinkLabel,
+    selectedServices[]->{ title, slug, shortDescription, pricing },
+    productsHeading,
+    productsLinkLabel,
+    selectedProducts[]->{ title, slug },
+    blogHeading,
+    blogLinkLabel
+  },
+  "latestArticles": *[_type == "article"] | order(publishedAt desc)[0...4]{
+    title,
+    slug,
+    coverImage,
+    publishedAt,
+    category->{ title, slug }
+  }
 }`;
 
 export default async function Home({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params
-  const data = await client.fetch(HOME_QUERY)
+  const { locale } = await params;
+  const { home: data, latestArticles } = await client.fetch(HOME_QUERY);
 
   return (
     <div className="page-wrapper">
@@ -43,9 +53,9 @@ export default async function Home({
         </section>
 
         <section className="pt-small" data-theme="alt" id="works">
-          <div className="grid-2">
+          <div className="grid-2 gap-regular">
             <h2 className="text-size-large">{data.worksHeading?.[locale]}</h2>
-            <div className="flex-col gap-regular">
+            <div className="flex-col gap-regular max-width-medium">
               <p>{data.worksText?.[locale]}</p>
               <a href="/works" className="link-icon">
                 {data.worksLinkLabel?.[locale]}
@@ -53,17 +63,17 @@ export default async function Home({
             </div>
           </div>
 
-          <div className={workCardStyles.worksList}>
-  {data.selectedWorks?.map((work: any) => (
-    <WorkCard
-      key={work.slug.current}
-      title={work.title}
-      slug={work.slug.current}
-      cardImage={work.cardImage}
-      service={work.services?.title?.[locale]}
-    />
-  ))}
-</div>
+          <div className={styles.worksList}>
+            {data.selectedWorks?.map((work: any) => (
+              <WorkCard
+                key={work.slug.current}
+                title={work.title}
+                slug={work.slug.current}
+                cardImage={work.cardImage}
+                service={work.services?.title?.[locale]}
+              />
+            ))}
+          </div>
         </section>
 
         <section className="pt-small" data-theme="alt" id="clients">
@@ -85,7 +95,9 @@ export default async function Home({
 
         <section className="pt-small" id="services">
           <div className="flex-row gap-regular justify-between">
-            <h2 className="text-size-large">{data.servicesHeading?.[locale]}</h2>
+            <h2 className="text-size-large">
+              {data.servicesHeading?.[locale]}
+            </h2>
             <a href="/services" className="link-icon">
               {data.servicesLinkLabel?.[locale]}
             </a>
@@ -125,6 +137,20 @@ export default async function Home({
             <a href="/blog" className="link-icon">
               {data.blogLinkLabel?.[locale]}
             </a>
+          </div>
+
+          <div className={styles.blogList}>
+            {latestArticles?.map((article: any) => (
+              <ArticleCard
+                key={article.slug.current}
+                title={article.title?.[locale]}
+                slug={article.slug.current}
+                coverImage={article.coverImage}
+                categoryTitle={article.category?.title?.[locale]}
+                publishedAt={article.publishedAt}
+                locale={locale}
+              />
+            ))}
           </div>
         </section>
       </main>

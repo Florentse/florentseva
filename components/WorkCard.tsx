@@ -22,11 +22,11 @@ export default function WorkCard({ title, slug, cardImage, service }: WorkCardPr
       </div>
       <div className={styles.cardTextWrap}>
       {service && (
-        <span className="text-size-small text-color-tertiary text-transform-uppercase">
+        <span className="text-size-small text-color-secondary text-transform-uppercase">
           {service}
         </span>
       )}
-      <h3 className="font-weight-bold">{title}</h3>
+      <h3 className="text-size-base">{title}</h3>
       </div>
     </a>
   )

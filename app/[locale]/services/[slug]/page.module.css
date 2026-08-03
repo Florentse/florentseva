@@ -1,0 +1,342 @@
+.heroSection {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.heroSection::before {
+  opacity: 0;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: flex-start;
+  gap: var(--gap-regular);
+}
+
+.heroContent > h1 {
+  grid-column: span 2;
+  margin: 0;
+}
+
+.heroDescription {
+  grid-row: 2;
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-regular);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-regular);
+  align-items: start;
+}
+
+.aside {
+  position: sticky;
+  top: var(--gap-huge);
+
+  /* Fallback for before JS measures/clamps the real height (see StickyAside.tsx) */
+  max-height: calc(100vh - var(--gap-huge) - var(--gap-regular));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gap-large);
+  align-items: flex-start;
+}
+
+.asideContent {
+  padding-left: var(--gap-tiny);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-huge);
+  grid-column: span 2;
+  max-width: 60rem;
+}
+
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-regular);
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: var(--gap-regular);
+  border-top: 1px solid var(--color-border-tertiary);
+}
+
+.stageItemList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  width: 100%;
+  border-left: 1px solid var(--color-border-tertiary);
+  margin-top: 0.75rem;
+  margin-left: 0.15rem;
+}
+
+.stageItem {
+  display: flex;
+  gap: var(--gap-regular);
+  width: 100%;
+  padding-top: 0;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.stageNumber {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  top: 0;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-tertiary);
+  font-weight: bold;
+  height: 1.5rem;
+}
+
+.stageItem .item {
+  padding-top: 0;
+  border-top: none;
+}
+
+.stageNumber {
+  flex-shrink: 0;
+}
+
+.pricingGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  width: 100%;
+}
+
+.pricingCard {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-large);
+  padding: var(--inner-padding-regular);
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.pricingCardBody {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: var(--gap-regular);
+  width: 100%;
+}
+
+.pricingCardBodyTop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.featuresList {
+  grid-column: 2;
+  grid-row: span 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-tiny);
+}
+
+.featureItem {
+  border-bottom: 1px solid var(--color-border-tertiary);
+  padding-bottom: var(--gap-tiny);
+  position: relative;
+}
+
+.pricingCardBodyBtn {
+    align-self: flex-end;
+}
+
+.caseStudiesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-regular);
+  width: 100%;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faqItem {
+  padding: var(--gap-regular) 0;
+  border-top: 1px solid var(--color-border-tertiary);
+  transition: border-color 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faqItem:hover {
+    border-top: 1px solid var(--color-border-primary);
+  }
+}
+
+.faqItem[open] {
+    border-top: 1px solid var(--color-border-primary);
+}
+
+.faqItem > p {
+  margin-top: var(--gap-small);
+}
+
+.faqSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-regular);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqSummary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem:not([open]) .faqIconOpen {
+  display: none;
+}
+
+.faqItem[open] .faqIconClosed {
+  display: none;
+}
+
+.faqItem[open] .faqIconOpen {
+  display: inline-block;
+}
+
+.relatedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.relatedList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  width: 100%;
+}
+
+.orderFormSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-regular);
+}
+
+.sectionFormGrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-regular);
+}
+
+.sectionFormText {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-regular);
+    max-width: 40rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-regular) var(--gap-large);
+  width: 100%;
+  max-width: 50rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.formFooter {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-regular);
+  margin-top: var(--gap-small);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 12rem 1fr;
+    gap: var(--gap-large);
+  }
+
+  .pricingGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: var(--gap-large);
+  }
+
+  .aside {
+    position: static;
+  }
+
+  .caseStudiesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldFull {
+    grid-column: auto;
+  }
+
+  .formFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

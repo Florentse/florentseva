@@ -52,3 +52,15 @@ section {
 .gap-small {
   gap: var(--gap-small);
 }
+
+.max-width-small {
+  max-width: 22rem;
+}
+
+.max-width-medium {
+  max-width: 30rem;
+}
+
+.max-width-large {
+  max-width: 65rem;
+}

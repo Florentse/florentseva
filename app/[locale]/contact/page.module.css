@@ -1,0 +1,88 @@
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+}
+
+.methodsSection::before {
+  opacity: 0;
+}
+
+.methodsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-regular);
+}
+
+.methodCard {
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: 0.5rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-huge);
+  align-items: start;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-regular) var(--gap-large);
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.formFooter {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap-regular);
+
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-tiny);
+}
+
+@media (max-width: 767px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--gap-regular);
+  }
+
+  .methodsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: var(--gap-large);
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldFull {
+    grid-column: auto;
+  }
+
+  .formFooter {
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: var(--gap-regular);
+  }
+}

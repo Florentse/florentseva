@@ -1,4 +1,8 @@
-import { getTranslations } from "next-intl/server";
+//components/ServiceCard.tsx
+
+"use client";
+
+import { useTranslations } from "next-intl";
 import styles from "./ServiceCard.module.css";
 
 type ServiceCardProps = {
@@ -9,31 +13,33 @@ type ServiceCardProps = {
   slug: string;
 };
 
-export default async function ServiceCard({
+export default function ServiceCard({
   number,
   title,
   description,
   minPrice,
   slug,
 }: ServiceCardProps) {
-  const t = await getTranslations("common");
+  const t = useTranslations("common");
 
   return (
-    <a href={`/services/${slug}`} className={`${styles.card} grid-2 gap-regular`}>
+    <a href={`/services/${slug}`} className={styles.card}>
       <div className="flex-row gap-regular">
         <span className="title-style-h3 font-weight-bold text-color-tertiary">
           {String(number).padStart(2, "0")}
         </span>
         <h3 className="font-weight-bold">{title}</h3>
       </div>
-      <div className="flex-col gap-regular">
+      <div className="flex-col gap-regular max-width-medium">
         {description && <p>{description}</p>}
         {minPrice !== undefined && (
           <p>
             {t("startingFrom")} ${minPrice}
           </p>
         )}
-        <span className="link-icon">{t("learnMore")}</span>
+        <div className={styles.cardArrowIcon}>
+          <span className="material-symbols-outlined text-color-secondary">arrow_outward</span>
+        </div>
       </div>
     </a>
   );
