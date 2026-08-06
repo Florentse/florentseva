@@ -1,6 +1,6 @@
 :root {
   /* Section */
-  --section-padding-x: var(--size-20);
+  --section-padding-x: 1.25rem;
   --section-padding-y-large: var(--size-160);
   --section-padding-y-regular: var(--size-120);
   --section-padding-y-small: var(--size-40);

@@ -35,7 +35,7 @@ export default function ServicesPageClient({
       <header>{/* Header */}</header>
 
       <main>
-        <section className="pt-large" id="services-intro">
+        <section className={`${styles.servisesHero} pt-large`} id="services-intro">
           <div className="max-width-large">
             <p className="title-style-h2 text-color-primary">{intro?.[locale]}</p>
           </div>

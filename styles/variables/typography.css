@@ -81,11 +81,11 @@
   :root {
     --font-size-title-l: 2.5rem;
     --font-size-title-m: 2rem;
-    --font-size-title-s: 1.25rem;
+    --font-size-title-s: 1.5rem;
 
-    --font-size-body-base: 1rem;
-    --font-size-body-large: 1.25rem;
-    --font-size-body-small: 0.75rem;
+    --font-size-body-base: 1.25rem;
+    --font-size-body-large: 1.5rem;
+    --font-size-body-small: 1rem;
   }
 }
 

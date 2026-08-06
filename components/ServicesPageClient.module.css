@@ -1,4 +1,6 @@
-
+.servisesHero {
+    padding-top: var(--size-160);
+}
 
 .servicesHeader {
     display: grid;
@@ -26,6 +28,12 @@
 }
 
 @media (max-width: 768px) {
+
+    .servisesHero{
+        padding-top: 10rem;
+        padding-bottom: 6rem;
+    }
+
     .servicesHeader {
         grid-template-columns: 1fr 1fr;
         padding-bottom: var(--gap-large);
