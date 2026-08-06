@@ -113,7 +113,7 @@
     grid-template-columns: 1fr;
     justify-items: flex-start;
     padding: var(--inner-padding-large) 0;
-    padding-bottom: 3.5rem;
+    padding-bottom: 2rem;
     gap: var(--gap-large);
   }
 
@@ -124,7 +124,7 @@
 
   .logo {
     margin-right: auto;
-    font-size: 1.15rem;
+    font-size: 1.75rem;
   }
 
   .footerNav {

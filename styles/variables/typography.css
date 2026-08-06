@@ -79,7 +79,7 @@
 /* Mobile */
 @media (max-width: 767px) {
   :root {
-    --font-size-title-l: 2.5rem;
+    --font-size-title-l: 2.25rem;
     --font-size-title-m: 2rem;
     --font-size-title-s: 1.35rem;
 

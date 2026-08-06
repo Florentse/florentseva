@@ -115,7 +115,8 @@
 
 @media (max-width: 767px) {
   .heroSection {
-    padding-top: var(--size-160);
+    padding-top: 8rem;
+    gap: var(--gap-large);
   }
   .heroGrid {
     grid-template-columns: 1fr;
@@ -123,9 +124,7 @@
     padding-top: var(--gap-regular);
   }
 
-  .heroImageWrap {
-    margin-top: var(--gap-large);
-  }
+
 
   .metaGrid {
     display: flex;
