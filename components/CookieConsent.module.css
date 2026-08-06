@@ -1,0 +1,120 @@
+.banner {
+  position: fixed;
+  left: var(--section-padding-x);
+  right: var(--section-padding-x);
+  bottom: var(--gap-regular);
+  z-index: 2000;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-regular);
+  padding: var(--inner-padding-regular);
+  border-radius: 0.75rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.bannerText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 40rem;
+}
+
+.bannerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-regular);
+  flex-wrap: wrap;
+}
+
+.linkButton {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.outlineButton {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-body-base);
+  cursor: pointer;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-regular);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  width: 100%;
+  max-width: 32rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  padding: var(--inner-padding-large);
+  border-radius: 0.75rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-small);
+  padding: var(--gap-regular) 0;
+  border-top: 1px solid var(--color-border-tertiary);
+  cursor: pointer;
+}
+
+.categoryItem:last-child {
+  border-bottom: 1px solid var(--color-border-tertiary);
+}
+
+.categoryItem > span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.categoryTitle {
+  font-weight: bold;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 767px) {
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bannerActions {
+    width: 100%;
+  }
+}

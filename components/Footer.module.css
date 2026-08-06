@@ -1,0 +1,127 @@
+.footer {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  padding: var(--inner-padding-small) var(--section-padding-x);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: var(--section-padding-x);
+    right: var(--section-padding-x);
+    height: 1px;
+    background-color: var(--color-border-primary);
+    z-index: 1;
+  }
+}
+
+.footerBottom {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  gap: var(--gap-regular);
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-regular);
+}
+
+.logo {
+  font-family: var(--font-family-logo);
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  width: fit-content;
+}
+
+.footerNav {
+  grid-column: span 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-regular);
+}
+
+.footerNavLink {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease-in;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footerNavLink:hover {
+    color: var(--color-text-primary);
+  }
+}
+
+.langSwitch {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: 0.5rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .langSwitch:hover {
+    border-color: var(--color-border-secondary);
+  }
+}
+
+.cookieSettingsButton {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cookieSettingsButton:hover {
+    border-color: var(--color-border-secondary);
+  }
+}
+
+.copyright {
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .footerBottom {
+    grid-template-columns: 1fr;
+    justify-items: flex-start;
+    padding: var(--inner-padding-large) var(--section-padding-x);
+    gap: var(--gap-large);
+  }
+
+  .brandCol {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .footerNav {
+    grid-column: auto;
+  }
+
+}

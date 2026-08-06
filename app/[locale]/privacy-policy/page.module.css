@@ -1,0 +1,19 @@
+.hero {
+  padding-bottom: var(--gap-small);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  margin-left: auto;
+}
+
+.body :global(h2) {
+  margin-top: var(--gap-large);
+  font-size: var(--font-size-title-s);
+}
+
+.body :global(ul) {
+  padding-left: 1.5rem;
+}

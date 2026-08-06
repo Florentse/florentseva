@@ -42,7 +42,10 @@ export default function HeaderClient({
       observer?.disconnect();
       intersecting.clear();
 
-      const sections = document.querySelectorAll('main [data-theme="alt"]');
+      // Only real page sections flip the header — cards and other inner
+      // elements (pricing cards, result panels, etc.) also use
+      // data-theme="alt" for their own local styling and shouldn't count.
+      const sections = document.querySelectorAll('main > section[data-theme="alt"]');
       if (sections.length === 0) {
         setIsInverted(false);
         return;

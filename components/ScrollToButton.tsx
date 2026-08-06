@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 type ScrollToButtonProps = {
   targetId: string;
@@ -9,12 +10,8 @@ type ScrollToButtonProps = {
 };
 
 export default function ScrollToButton({ targetId, className, children }: ScrollToButtonProps) {
-  function handleClick() {
-    document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
-  }
-
   return (
-    <button type="button" className={className} onClick={handleClick}>
+    <button type="button" className={className} onClick={() => scrollToSection(targetId)}>
       {children}
     </button>
   );

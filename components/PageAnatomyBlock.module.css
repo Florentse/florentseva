@@ -1,0 +1,108 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--gap-regular);
+  align-items: start;
+  width: 100%;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.tab {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border-tertiary);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-body-small);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tabExtension {
+  background-color: transparent;
+  border-style: dashed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover {
+    border-color: var(--color-border-secondary);
+  }
+}
+
+.tabActive,
+.tabActive:hover {
+  background-color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  border-style: solid;
+  color: var(--color-bg-primary);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gap-large);
+  min-height: 20rem;
+  height: 100%;
+  padding: var(--inner-padding-large);
+  border-radius: 0.75rem;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.panelTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-regular);
+}
+
+.panelIndex {
+  font-family: var(--font-family-title);
+  font-size: var(--font-size-title-s);
+  color: var(--color-text-tertiary);
+}
+
+.panelBadge {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: 999px;
+  font-size: var(--font-size-body-small);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.panelBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .tab {
+    flex-shrink: 0;
+    width: max-content;
+  }
+}

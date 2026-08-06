@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-start;
-  gap: var(--gap-regular);
+  gap: var(--gap-large);
 }
 
 .heroContent > h1 {
@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-regular);
+  gap: var(--gap-large);
 }
 
 .layout {
@@ -37,10 +37,11 @@
 
 .aside {
   position: sticky;
-  top: var(--gap-huge);
+  top: var(--gap-large);
+  padding-top: var(--gap-large);
 
   /* Fallback for before JS measures/clamps the real height (see StickyAside.tsx) */
-  max-height: calc(100vh - var(--gap-huge) - var(--gap-regular));
+  max-height: calc(100vh - var(--gap-large) - var(--gap-large));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,7 +56,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-huge);
+  gap: var(--gap-large);
   grid-column: span 2;
   max-width: 60rem;
 }
@@ -64,13 +65,21 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-regular);
+  gap: var(--size-28);
+  padding-top: var(--gap-large);
 }
 
 .itemList {
   display: flex;
   flex-direction: column;
   gap: var(--gap-regular);
+  width: 100%;
+}
+
+.connectionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-regular) var(--gap-large);
   width: 100%;
 }
 
@@ -183,6 +192,13 @@
   width: 100%;
 }
 
+.readyMadeProductsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  width: 100%;
+}
+
 .faqList {
   display: flex;
   flex-direction: column;
@@ -245,6 +261,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-large);
+  width: 100%;
+}
+
+.youMayAlsoLike {
+  border-top: 1px solid var(--color-border-secondary);
+  margin-top: var(--gap-large);
+}
+
+.articlesList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--gap-regular);
+  row-gap: var(--gap-large);
   width: 100%;
 }
 
@@ -314,17 +343,38 @@
 }
 
 @media (max-width: 767px) {
+.heroSection {
+  padding-top: var(--size-160);
+}
+
+.heroContent,
+ .pricingCardBody,
+ .sectionFormGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+}
+
   .layout {
     grid-template-columns: 1fr;
     gap: var(--gap-large);
   }
 
   .aside {
-    position: static;
+    display: none;
   }
+
 
   .caseStudiesGrid {
     grid-template-columns: 1fr;
+  }
+
+  .connectionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .articlesList {
+    grid-template-columns: 1fr 1fr;
   }
 
   .form {

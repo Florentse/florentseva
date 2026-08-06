@@ -1,13 +1,32 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/types";
+import type { SanityImageSource } from "@sanity/image-url";
 import { urlFor } from "@/sanity/lib/image";
+import { SITE_URL } from "@/lib/siteUrl";
+import ServiceTocNav from "./ServiceTocNav";
+import ViewTracker from "./ViewTracker";
 import styles from "./ArticlePageClient.module.css";
 
+type ArticleSection = {
+  heading?: Record<string, string>;
+  content?: Record<string, PortableTextBlock[]>;
+};
+
+type Article = {
+  title?: Record<string, string>;
+  slug?: { current: string };
+  metaDescription?: Record<string, string>;
+  publishedAt?: string;
+  coverImage?: SanityImageSource;
+  category?: { title?: Record<string, string> };
+  sections?: ArticleSection[];
+};
+
 type ArticlePageClientProps = {
-  article: any;
+  article: Article;
   locale: string;
 };
 
@@ -34,75 +53,78 @@ export default function ArticlePageClient({
   locale,
 }: ArticlePageClientProps) {
   const sections = article.sections ?? [];
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = sectionRefs.current.indexOf(
-              entry.target as HTMLElement,
-            );
-            if (index !== -1) setActiveIndex(index);
-          }
-        });
-      },
-      { rootMargin: "-20% 0px -70% 0px" },
-    );
-
-    sectionRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, [sections.length]);
+  const slug = article.slug?.current as string | undefined;
+  const title = article.title?.[locale] ?? "";
+  const coverImage = article.coverImage;
 
   const formattedDate = article.publishedAt
     ? new Date(article.publishedAt).toLocaleDateString(
         locale === "ru" ? "ru-RU" : "en-US",
-        { year: "numeric", month: "long", day: "numeric" },
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
       )
     : null;
 
+  const pageUrl = slug ? `${SITE_URL}/${locale}/blog/${slug}` : SITE_URL;
+  const shareLinks = [
+    {
+      name: "Facebook",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
+    },
+    {
+      name: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`,
+    },
+    {
+      name: "X",
+      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(title)}`,
+    },
+    {
+      name: "Telegram",
+      href: `https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(title)}`,
+    },
+  ];
+
   return (
     <div className="page-wrapper">
+      <ViewTracker type="article" slug={slug} />
       <header>{/* Header */}</header>
 
       <main>
-        <section className={styles.articleHero}>
-          <div className="container">
-            <div
-              className={`${styles.breadcrumbs} text-size-small text-color-tertiary`}
+        <section id="article-hero" className={styles.heroSection}>
+          <div className={styles.heroTopRow}>
+            <Link
+              href={`/${locale}/blog`}
+              className="text-size-base text-color-tertiary"
             >
-              <Link href={`/${locale}`}>
-                {locale === "ru" ? "Главная" : "Home"}
-              </Link>{" "}
-              /{" "}
-              <Link href={`/${locale}/blog`}>
-                {locale === "ru" ? "Все посты" : "All posts"}
-              </Link>{" "}
-              /
-            </div>
-
+              / {locale === "ru" ? "Все посты" : "All posts"}
+            </Link>
             <div className={styles.metaRow}>
-              {article.category && (
-                <span className="text-size-small text-color-tertiary text-transform-uppercase">
-                  {article.category.title?.[locale]}
+              {article.category?.title?.[locale] && (
+                <span className="text-size-small text-color-secondary text-transform-uppercase">
+                  {article.category.title[locale]}
                 </span>
               )}
               {formattedDate && (
-                <span className="text-size-small text-color-tertiary">
+                <span className="text-size-small text-color-secondary">
                   {formattedDate}
                 </span>
               )}
             </div>
+          </div>
+          <div className={styles.heroContent}>
+            <div className={styles.heroHeadingWrap}>
+              <h1>{title}</h1>
+            </div>
 
-            <h1 className={styles.title}>{article.title?.[locale]}</h1>
-
-            {article.coverImage && (
+            {coverImage && (
               <div className={styles.coverWrap}>
                 <img
-                  src={urlFor(article.coverImage).url()}
-                  alt={article.title?.[locale]}
+                  src={urlFor(coverImage).width(1600).height(700).url()}
+                  alt={title}
                   className={styles.cover}
                 />
               </div>
@@ -110,47 +132,54 @@ export default function ArticlePageClient({
           </div>
         </section>
 
-        <section className={styles.articleBody}>
-          <div className={`container ${styles.layout}`}>
+        <section id="article-body" className={styles.articleBody}>
+          <div className={styles.layout}>
             <aside className={styles.aside}>
-              <div className="text-size-small text-color-tertiary text-transform-uppercase">
-                {locale === "ru" ? "На этой странице" : "On this page"}
+              <div className="text-size-large text-color-secondary">
+                {locale === "ru" ? "Содержание" : "Content"}
               </div>
-              <ol className={styles.toc}>
-                {sections.map((section: any, index: number) => (
-                  <li key={index}>
-                    <a
-                      href={`#section-${index}`}
-                      className={
-                        index === activeIndex
-                          ? styles.tocLinkActive
-                          : styles.tocLink
-                      }
-                    >
-                      {section.heading?.[locale]}
-                    </a>
-                  </li>
-                ))}
-              </ol>
+              <ServiceTocNav
+                className={styles.toc}
+                items={sections.map((section, index) => ({
+                  id: `section-${index}`,
+                  label: section.heading?.[locale] ?? "",
+                }))}
+              />
             </aside>
 
             <article className={styles.content}>
-              {sections.map((section: any, index: number) => (
+              {sections.map((section, index) => (
                 <section
                   key={index}
                   id={`section-${index}`}
-                  ref={(el) => {
-                    sectionRefs.current[index] = el;
-                  }}
                   className={styles.section}
                 >
-                  <h2>{section.heading?.[locale]}</h2>
+                  <h2 className="title-style-h3">{section.heading?.[locale]}</h2>
                   <PortableText
                     value={section.content?.[locale] ?? []}
                     components={portableTextComponents}
                   />
                 </section>
               ))}
+
+              <div className={styles.shareRow}>
+                <span className="text-size-small text-color-tertiary text-transform-uppercase">
+                  {locale === "ru" ? "Поделиться" : "Share"}
+                </span>
+                <div className={styles.shareButtons}>
+                  {shareLinks.map((share) => (
+                    <a
+                      key={share.name}
+                      href={share.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.shareButton}
+                    >
+                      {share.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </article>
           </div>
         </section>

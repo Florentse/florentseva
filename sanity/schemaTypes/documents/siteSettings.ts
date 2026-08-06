@@ -8,12 +8,22 @@ export const siteSettings = defineType({
     {name: 'general', title: 'General'},
     {name: 'header', title: 'Header'},
     {name: 'footer', title: 'Footer'},
+    {name: 'cookies', title: 'Cookies'},
   ],
   fields: [
     defineField({
-      name: 'favicon',
-      title: 'Favicon',
-      description: 'Square image, ideally 512×512px (used to generate all favicon sizes)',
+      name: 'faviconLight',
+      title: 'Favicon — for light browser theme',
+      description:
+        'Shown when the visitor\'s browser/OS is in light mode — use a DARK icon so it stays visible against the light tab bar. Square, ideally 512×512px.',
+      type: 'image',
+      group: 'general',
+    }),
+    defineField({
+      name: 'faviconDark',
+      title: 'Favicon — for dark browser theme',
+      description:
+        'Shown when the visitor\'s browser/OS is in dark mode — use a LIGHT icon so it stays visible against the dark tab bar. Square, ideally 512×512px.',
       type: 'image',
       group: 'general',
     }),
@@ -111,6 +121,56 @@ export const siteSettings = defineType({
       title: 'Copyright Text',
       type: 'localeString',
       group: 'footer',
+    }),
+
+    defineField({
+      name: 'cookieConsent',
+      title: 'Cookie Consent',
+      type: 'object',
+      group: 'cookies',
+      fields: [
+        // — Banner —
+        defineField({name: 'bannerTitle', title: 'Banner Title', type: 'localeString'}),
+        defineField({name: 'bannerText', title: 'Banner Text', type: 'localeText'}),
+        defineField({name: 'acceptAllLabel', title: 'Accept All — Button', type: 'localeString'}),
+        defineField({name: 'rejectAllLabel', title: 'Reject All — Button', type: 'localeString'}),
+        defineField({name: 'customizeLabel', title: 'Customize — Button', type: 'localeString'}),
+        // — Settings modal —
+        defineField({name: 'modalTitle', title: 'Modal Title', type: 'localeString'}),
+        defineField({name: 'modalText', title: 'Modal Text', type: 'localeText'}),
+        defineField({name: 'savePreferencesLabel', title: 'Save Preferences — Button', type: 'localeString'}),
+        // — Categories (the checkboxes) —
+        defineField({
+          name: 'categories',
+          title: 'Cookie Categories',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              name: 'cookieCategory',
+              fields: [
+                defineField({
+                  name: 'key',
+                  title: 'Key',
+                  description: 'Machine name, e.g. necessary, analytics',
+                  type: 'string',
+                }),
+                defineField({name: 'title', title: 'Title', type: 'localeString'}),
+                defineField({name: 'description', title: 'Description', type: 'localeText'}),
+                defineField({
+                  name: 'required',
+                  title: 'Always active (cannot be disabled)',
+                  type: 'boolean',
+                  initialValue: false,
+                }),
+              ],
+              preview: {
+                select: {title: 'title.en', subtitle: 'key'},
+              },
+            },
+          ],
+        }),
+      ],
     }),
   ],
 })

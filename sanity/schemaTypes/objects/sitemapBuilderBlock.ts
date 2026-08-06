@@ -30,6 +30,38 @@ export const sitemapBuilderBlock = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'tiers',
+      title: 'Pricing Tiers (by page count)',
+      description:
+        'Order from smallest to largest. The result shows the first tier whose "Max Pages" covers the selected page count — leave "Max Pages" empty on the last tier to use it as the catch-all for anything larger.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'sitemapTier',
+          fields: [
+            defineField({name: 'title', title: 'Tier Title', type: 'localeString'}),
+            defineField({name: 'price', title: 'Starting Price ($)', type: 'number'}),
+            defineField({
+              name: 'maxPages',
+              title: 'Max Pages',
+              description: 'Leave empty for the top / unlimited tier.',
+              type: 'number',
+            }),
+            defineField({
+              name: 'timeline',
+              title: 'Estimated Timeline',
+              description: 'e.g. "~3 weeks" or "Scoped per project"',
+              type: 'localeString',
+            }),
+          ],
+          preview: {
+            select: {title: 'title.en', subtitle: 'maxPages'},
+          },
+        },
+      ],
+    }),
   ],
   preview: {select: {title: 'heading.en'}},
 })

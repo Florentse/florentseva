@@ -48,6 +48,14 @@ export const article = defineType({
       type: 'array',
       of: [{type: 'articleSection'}],
     }),
+    defineField({
+      name: 'viewCount',
+      title: 'View Count',
+      description: 'Recorded automatically on each page load — not editable here.',
+      type: 'number',
+      readOnly: true,
+      initialValue: 0,
+    }),
   ],
   preview: {
     select: {

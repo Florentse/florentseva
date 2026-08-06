@@ -13,8 +13,7 @@ export const privacyPolicy = defineType({
     defineField({
       name: 'body',
       title: 'Body',
-      type: 'array',
-      of: [{type: 'block'}],
+      type: 'localePortableText',
     }),
   ],
 })

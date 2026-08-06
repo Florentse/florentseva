@@ -37,7 +37,7 @@ export default function ServicesPageClient({
       <main>
         <section className="pt-large" id="services-intro">
           <div className="max-width-large">
-            <p className="title-style-h2">{intro?.[locale]}</p>
+            <p className="title-style-h2 text-color-primary">{intro?.[locale]}</p>
           </div>
         </section>
 

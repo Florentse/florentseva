@@ -1,8 +1,11 @@
 // app/[locale]/about/page.tsx
 
+import { cache } from "react";
+import type { Metadata } from "next";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { SITE_URL } from "@/lib/siteUrl";
 import styles from "./page.module.css";
 
 const ABOUT_PAGE_QUERY = `*[_id == "about"][0]{
@@ -21,6 +24,8 @@ const ABOUT_PAGE_QUERY = `*[_id == "about"][0]{
     work->{title}
   }
 }`;
+
+const getAboutData = cache(async () => client.fetch(ABOUT_PAGE_QUERY));
 
 type Stat = {
   value?: string;
@@ -94,13 +99,68 @@ function testimonialByline(testimonial: Testimonial, locale: string) {
   return parts.filter(Boolean).join(", ");
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const about = await getAboutData();
+
+  const title = locale === "ru" ? "Обо мне" : "About";
+  const description =
+    about?.intro?.[locale] ??
+    (locale === "ru"
+      ? "Веб-разработчик и дизайнер, специализирующаяся на Webflow и Next.js. Опыт, подход к работе и отзывы клиентов."
+      : "Web developer and designer specializing in Webflow and Next.js. Background, approach, and client testimonials.");
+  const keywords = [
+    locale === "ru" ? "обо мне" : "about",
+    locale === "ru" ? "веб-разработчик" : "web developer",
+    locale === "ru" ? "веб-дизайнер" : "web designer",
+    "Webflow",
+    "Next.js",
+    "Tatiana Florentseva",
+  ];
+
+  const url = locale === "ru" ? `${SITE_URL}/ru/about` : `${SITE_URL}/about`;
+  const imageUrl = about?.photo ? urlFor(about.photo).width(1200).height(630).url() : undefined;
+
+  return {
+    title,
+    description,
+    keywords,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/about`,
+        ru: `${SITE_URL}/ru/about`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "florentseva",
+      type: "profile",
+      locale: locale === "ru" ? "ru_RU" : "en_US",
+      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
+    },
+    twitter: {
+      card: imageUrl ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  };
+}
+
 export default async function AboutPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const about = await client.fetch(ABOUT_PAGE_QUERY);
+  const about = await getAboutData();
 
   const stats: Stat[] = about?.stats ?? [];
   const inShortItems: AboutSectionItem[] = about?.inShortItems ?? [];
@@ -108,8 +168,23 @@ export default async function AboutPage({
   const testimonials: Testimonial[] = about?.testimonials ?? [];
   const portableTextComponents = getPortableTextComponents(about?.photo);
 
+  const baseUrl = locale === "ru" ? `${SITE_URL}/ru` : SITE_URL;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Tatiana Florentseva",
+    url: `${baseUrl}/about`,
+    jobTitle: locale === "ru" ? "Веб-разработчик и дизайнер" : "Web Developer & Designer",
+    image: about?.photo ? urlFor(about.photo).width(1200).height(630).url() : undefined,
+    description: about?.intro?.[locale],
+  };
+
   return (
     <div className="page-wrapper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header>{/* Header */}</header>
 
       <main>
@@ -161,11 +236,11 @@ export default async function AboutPage({
               <div className={styles.awardsList}>
                 {awards.map((award, index) => (
                   <div key={index} className={styles.awardRow}>
-                    <span className="text-color-tertiary">{award.year}</span>
+                    <p className="text-color-secondary">{award.year}</p>
                     <p className="font-weight-bold">{award.title}</p>
-                    <span className="text-color-secondary">
+                    <p className="text-color-secondary">
                       {award.projectName}
-                    </span>
+                    </p>
                     {award.image && (
                       <div className={styles.awardImageWrap}>
                         <img
@@ -208,7 +283,7 @@ export default async function AboutPage({
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className={styles.testimonialItem}>
                     <p>{testimonial.quote?.[locale]}</p>
-                    <p className="text-size-small text-color-tertiary">
+                    <p className=" text-color-tertiary">
                       — {testimonialByline(testimonial, locale)}
                     </p>
                   </div>

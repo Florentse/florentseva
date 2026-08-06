@@ -1,6 +1,11 @@
-input:not([type="checkbox"]):not([type="radio"]),
-textarea,
-select {
+/* :not(#sanity *) excludes anything rendered inside Sanity Studio (mounted
+   in <div id="sanity"> — see next-sanity's NextStudioLayout) so these bare
+   input/textarea/select rules don't leak into Studio's own dark-themed
+   fields and make typed text invisible there. */
+
+input:not([type="checkbox"]):not([type="radio"]):not(#sanity *),
+textarea:not(#sanity *),
+select:not(#sanity *) {
     width: 100%;
     padding: 0.75rem 0;
     background: transparent;
@@ -14,35 +19,89 @@ select {
     transition: border-color 0.3s ease;
 }
 
-textarea {
+textarea:not(#sanity *) {
     resize: vertical;
 }
 
-select {
+select:not(#sanity *) {
     cursor: pointer;
     accent-color: var(--color-border-primary, #000);
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"]:not(#sanity *),
+input[type="radio"]:not(#sanity *) {
+    appearance: none;
+    -webkit-appearance: none;
     width: 1.1rem;
     height: 1.1rem;
+    margin: 0;
     flex: none;
-    accent-color: var(--color-border-primary, #000);
+    position: relative;
+    background-color: transparent;
+    border: 1px solid var(--color-border-tertiary, #e5e5e5);
     cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+input[type="checkbox"]:not(#sanity *) {
+    border-radius: 0.25rem;
+}
+
+input[type="radio"]:not(#sanity *) {
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked:not(#sanity *),
+input[type="radio"]:checked:not(#sanity *) {
+    background-color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+}
+
+input[type="checkbox"]:checked:not(#sanity *)::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    width: 0.3rem;
+    height: 0.55rem;
+    border: solid var(--color-bg-primary);
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+input[type="radio"]:checked:not(#sanity *)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background-color: var(--color-bg-primary);
+}
+
+input[type="checkbox"]:focus-visible:not(#sanity *),
+input[type="radio"]:focus-visible:not(#sanity *) {
+    outline: 1px solid var(--color-border-primary);
+    outline-offset: 2px;
 }
 
 @media (hover: hover) and (pointer: fine) {
-    input:not([type="checkbox"]):not([type="radio"]):hover,
-    textarea:hover,
-    select:hover {
+    input:not([type="checkbox"]):not([type="radio"]):not(#sanity *):hover,
+    textarea:not(#sanity *):hover,
+    select:not(#sanity *):hover {
         border-bottom-color: var(--color-border-secondary, #c0c0c0);
+    }
+
+    input[type="checkbox"]:not(:checked):not(#sanity *):hover,
+    input[type="radio"]:not(:checked):not(#sanity *):hover {
+        border-color: var(--color-border-secondary, #c0c0c0);
     }
 }
 
-input:not([type="checkbox"]):not([type="radio"]):focus,
-textarea:focus,
-select:focus {
+input:not([type="checkbox"]):not([type="radio"]):not(#sanity *):focus,
+textarea:not(#sanity *):focus,
+select:not(#sanity *):focus {
     outline: none;
     border-bottom-color: var(--color-border-primary, #000);
 }

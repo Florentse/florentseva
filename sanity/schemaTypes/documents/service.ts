@@ -30,6 +30,7 @@ export const service = defineType({
       validation: (Rule) => Rule.required(),
       group: "main",
     }),
+    
     defineField({
       name: "slug",
       title: "Slug",
@@ -38,6 +39,7 @@ export const service = defineType({
       validation: (Rule) => Rule.required(),
       group: "main",
     }),
+
     defineField({
       name: "sortOrder",
       title: "Sort Order",
@@ -46,6 +48,7 @@ export const service = defineType({
       type: "number",
       group: "main",
     }),
+
     defineField({
       name: "shortDescription",
       title: "Short Description",
@@ -54,6 +57,7 @@ export const service = defineType({
       type: "localeText",
       group: "main",
     }),
+
     defineField({
       name: "category",
       title: "Category",
@@ -62,6 +66,7 @@ export const service = defineType({
       group: "main",
     }),
 
+    //Opportunity
     defineField({
       name: "opportunity",
       title: "The Opportunity",
@@ -69,6 +74,8 @@ export const service = defineType({
       of: [{ type: "headingParagraphItem" }],
       group: "content",
     }),
+
+    //Solutions
     defineField({
       name: "solutions",
       title: "Solutions & Capabilities",
@@ -76,6 +83,8 @@ export const service = defineType({
       of: [{ type: "headingParagraphItem" }],
       group: "content",
     }),
+
+    //Stages of work
     defineField({
       name: "stages",
       title: "Stages of Work",
@@ -84,12 +93,16 @@ export const service = defineType({
       of: [{ type: "headingParagraphItem" }],
       group: "content",
     }),
+
+    //Outcomes
     defineField({
       name: "outcomes",
       title: "Outcomes",
       type: "localeText",
       group: "content",
     }),
+
+    //Custom section
     defineField({
       name: "customSections",
       title: "Custom Sections",
@@ -104,10 +117,12 @@ export const service = defineType({
         {type: 'pageAnatomyBlock'},
         {type: 'sitemapBuilderBlock'},
         {type: 'scopeBuilderBlock'},
+        {type: 'storeQuizBlock'},
       ],
       group: "content",
     }),
 
+    //Pricing
     defineField({
       name: "pricing",
       title: "Pricing Tiers",
@@ -133,12 +148,7 @@ export const service = defineType({
               type: "array",
               of: [{ type: "localeString" }],
             }),
-            defineField({
-              name: "deliveryLabel",
-              title: "Delivery Label",
-              description: 'e.g. "Delivery in ~2 weeks"',
-              type: "localeString",
-            }),
+
             defineField({
               name: "highlighted",
               title: "Highlighted",
@@ -156,6 +166,7 @@ export const service = defineType({
       group: "pricing",
     }),
 
+    // Products
     defineField({
       name: "readyMadeProducts",
       title: "Ready-made Products",
@@ -164,6 +175,7 @@ export const service = defineType({
       group: "products",
     }),
 
+    // Cases
     defineField({
       name: "caseStudies",
       title: "Case Studies",
@@ -172,6 +184,7 @@ export const service = defineType({
       group: "cases",
     }),
 
+    //FAQ
     defineField({
       name: "faq",
       title: "FAQ",
@@ -179,6 +192,8 @@ export const service = defineType({
       of: [{ type: "faqItem" }],
       group: "faq",
     }),
+
+    //Artcicles
     defineField({
       name: "relatedArticles",
       title: "Related Articles",
@@ -186,6 +201,8 @@ export const service = defineType({
       of: [{ type: "reference", to: [{ type: "article" }] }],
       group: "articles",
     }),
+
+    //Services
     defineField({
       name: "relatedServices",
       title: "Related Services",
@@ -193,6 +210,8 @@ export const service = defineType({
       of: [{ type: "reference", to: [{ type: "service" }] }],
       group: "related",
     }),
+
+    //Contact form
     defineField({
       name: "contactForm",
       title: "Contact Form",
@@ -223,23 +242,29 @@ export const service = defineType({
           type: "array",
           of: [{ type: "formField" }],
         }),
-        defineField({
-          name: "privacyLabel",
-          title: "Privacy Consent Label",
-          type: "localeString",
-        }),
-        defineField({
-          name: "submitLabel",
-          title: "Submit Button Label",
-          type: "localeString",
-        }),
       ],
     }),
+
+    defineField({
+      name: "viewCount",
+      title: "View Count",
+      description: "Recorded automatically on each page load — not editable here.",
+      type: "number",
+      readOnly: true,
+      initialValue: 0,
+    }),
   ],
+
   preview: {
     select: {
       title: "title.en",
-      subtitle: "slug.current",
+      viewCount: "viewCount",
+    },
+    prepare({title, viewCount}) {
+      return {
+        title,
+        subtitle: `${viewCount ?? 0} views`,
+      };
     },
   },
 });

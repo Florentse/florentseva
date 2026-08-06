@@ -3,6 +3,8 @@ import { getMessages } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import CookieConsent from '@/components/CookieConsent'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -27,6 +29,8 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <Header locale={locale} />
       {children}
+      <Footer locale={locale} />
+      <CookieConsent locale={locale} />
     </NextIntlClientProvider>
   )
 }

@@ -18,6 +18,7 @@ type ContactFormFieldProps = {
   locale: string;
   fieldClassName?: string;
   fieldFullClassName?: string;
+  defaultValue?: string;
 };
 
 export default function ContactFormField({
@@ -25,6 +26,7 @@ export default function ContactFormField({
   locale,
   fieldClassName = "",
   fieldFullClassName = "",
+  defaultValue,
 }: ContactFormFieldProps) {
   const label = field.label?.[locale];
   const placeholder = field.placeholder?.[locale];
@@ -39,7 +41,7 @@ export default function ContactFormField({
       </label>
 
       {field.fieldType === "textarea" ? (
-        <textarea id={field.fieldId} name={field.fieldId} placeholder={placeholder} required={field.required} rows={4} />
+        <textarea id={field.fieldId} name={field.fieldId} placeholder={placeholder} required={field.required} rows={4} defaultValue={defaultValue} />
       ) : field.fieldType === "select" ? (
         <RadioDropdown field={field} locale={locale} placeholder={placeholder} />
       ) : field.fieldType === "checkbox" ? (
@@ -51,6 +53,7 @@ export default function ContactFormField({
           name={field.fieldId}
           placeholder={placeholder}
           required={field.required}
+          defaultValue={defaultValue}
         />
       )}
     </div>
@@ -66,8 +69,11 @@ function RadioDropdown({
   locale: string;
   placeholder?: string;
 }) {
+  const options = field.options ?? [];
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(
+    options[0]?.[locale] ?? null,
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -84,8 +90,6 @@ function RadioDropdown({
     setSelected(value);
     setIsOpen(false);
   }
-
-  const options = field.options ?? [];
 
   return (
     <div className={styles.dropdown} ref={containerRef}>

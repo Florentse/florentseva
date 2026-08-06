@@ -43,6 +43,14 @@ section {
   justify-content: space-between;
 }
 
+.section-top-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-regular);
+  width: 100%;
+}
+
 /* Grid utilities */
 .grid-2 {
   display: grid;

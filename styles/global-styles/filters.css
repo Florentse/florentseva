@@ -61,7 +61,10 @@
 }
 
 .search-input {
-  padding-left: 2rem;
+  /* !important: the global input rule in forms.css matches this element with
+     higher specificity (input:not(...):not(...):not(#sanity *)) and sets
+     padding-left: 0 via its shorthand, otherwise silently winning over this. */
+  padding-left: 2rem !important;
 }
 
 .searchHints {
@@ -69,6 +72,33 @@
   flex-direction: column;
   gap: var(--gap-small);
   align-items: flex-start;
+}
+
+/* Grouped hints (e.g. homepage search: Works / Services / Products / Articles) */
+.searchHintGroups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-regular);
+  align-items: flex-start;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-secondary);
+  padding: var(--gap-regular);
+
+}
+
+.searchHintGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-tiny);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.searchHintGroupLabel {
+  color: var(--color-text-tertiary);
 }
 
 .searchHintButton {

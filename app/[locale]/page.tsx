@@ -1,10 +1,15 @@
+import { cache } from "react";
+import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { SITE_URL } from "@/lib/siteUrl";
 import styles from "./page.module.css";
 import WorkCard from "@/components/WorkCard";
 import workCardStyles from "@/components/WorkCard.module.css";
 import ServiceCard from "@/components/ServiceCard";
+import ProductCard from "@/components/ProductCard";
 import ArticleCard from "@/components/ArticleCard";
+import HomeSearch from "@/components/HomeSearch";
 
 const HOME_QUERY = `{
   "home": *[_type == "home"][0]{
@@ -20,9 +25,10 @@ const HOME_QUERY = `{
     selectedServices[]->{ title, slug, shortDescription, pricing },
     productsHeading,
     productsLinkLabel,
-    selectedProducts[]->{ title, slug },
+    selectedProducts[]->{ title, slug, url, description, coverImage, category->{ title } },
     blogHeading,
-    blogLinkLabel
+    blogLinkLabel,
+    seo
   },
   "latestArticles": *[_type == "article"] | order(publishedAt desc)[0...4]{
     title,
@@ -30,8 +36,60 @@ const HOME_QUERY = `{
     coverImage,
     publishedAt,
     category->{ title, slug }
-  }
+  },
+  "searchWorks": *[_type == "work"]{ title, slug, cardDescription },
+  "searchServices": *[_type == "service"]{ title, slug, shortDescription },
+  "searchProducts": *[_type == "product"]{ title, slug, url, description, searchKeywords },
+  "searchArticles": *[_type == "article"]{ title, slug, metaDescription },
+  "siteSettings": *[_type == "siteSettings"][0]{ defaultSeo }
 }`;
+
+const getHomeData = cache(async () => client.fetch(HOME_QUERY));
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { home, siteSettings } = await getHomeData();
+
+  const seo = home?.seo ?? {};
+  const fallback = siteSettings?.defaultSeo ?? {};
+
+  const title = seo.title?.[locale] || fallback.title?.[locale];
+  const description = seo.description?.[locale] || fallback.description?.[locale];
+  const ogImageSource = seo.ogImage ?? fallback.ogImage;
+  const imageUrl = ogImageSource ? urlFor(ogImageSource).width(1200).height(630).url() : undefined;
+  const url = locale === "ru" ? `${SITE_URL}/ru` : SITE_URL;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: SITE_URL,
+        ru: `${SITE_URL}/ru`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Florentseva",
+      locale: locale === "ru" ? "ru_RU" : "en_US",
+      type: "website",
+      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630 }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: imageUrl ? [imageUrl] : undefined,
+    },
+  };
+}
 
 export default async function Home({
   params,
@@ -39,7 +97,14 @@ export default async function Home({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const { home: data, latestArticles } = await client.fetch(HOME_QUERY);
+  const {
+    home: data,
+    latestArticles,
+    searchWorks,
+    searchServices,
+    searchProducts,
+    searchArticles,
+  } = await getHomeData();
 
   return (
     <div className="page-wrapper">
@@ -47,11 +112,23 @@ export default async function Home({
 
       <main>
         <section className={`${styles.hero} pt-small`} id="hero">
-          <div className={styles.heroContent}>
+          <div
+            className={`${styles.heroSearchWarpper} ${locale === "ru" ? styles.heroSearchWarpperRu : ""}`}
+          >
+            <HomeSearch
+              locale={locale}
+              works={searchWorks ?? []}
+              services={searchServices ?? []}
+              products={searchProducts ?? []}
+              articles={searchArticles ?? []}
+            />
+          </div>
+          <div className={styles.heroHeadingWarpper}>
             <h1>{data.heroTitle?.[locale]}</h1>
           </div>
         </section>
 
+        {/* Works */}
         <section className="pt-small" data-theme="alt" id="works">
           <div className="grid-2 gap-regular">
             <h2 className="text-size-large">{data.worksHeading?.[locale]}</h2>
@@ -76,6 +153,7 @@ export default async function Home({
           </div>
         </section>
 
+        {/* Clients*/}
         <section className="pt-small" data-theme="alt" id="clients">
           <h2 className="text-size-large">{data.clientsHeading?.[locale]}</h2>
           <div className={styles.clientsList}>
@@ -93,6 +171,7 @@ export default async function Home({
           </div>
         </section>
 
+        {/* Services */}
         <section className="pt-small" id="services">
           <div className="flex-row gap-regular justify-between">
             <h2 className="text-size-large">
@@ -124,13 +203,38 @@ export default async function Home({
           </div>
         </section>
 
+        {/* Products */}
         <section className="pt-small" id="products">
-          <h2 className="text-size-large">{data.productsHeading?.[locale]}</h2>
-          <a href="/products" className="link-icon">
-            {data.productsLinkLabel?.[locale]}
-          </a>
+          <div className="flex-row gap-regular justify-between">
+            <h2 className="text-size-large">
+              {data.productsHeading?.[locale]}
+            </h2>
+            <a href="/products" className="link-icon">
+              {data.productsLinkLabel?.[locale]}
+            </a>
+          </div>
+
+          <div className={styles.productsListWrap}>
+            <div className="hide-tablet"></div>
+            <div className={styles.productsList}>
+              {data.selectedProducts?.map((product: any) => {
+                return (
+                  <ProductCard
+                    key={product.slug.current}
+                    title={product.title?.[locale]}
+                    description={product.description?.[locale]}
+                    category={product.category?.title?.[locale]}
+                    coverImage={product.coverImage}
+                    slug={product.slug.current}
+                    url={product.url}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </section>
 
+        {/* Blog*/}
         <section className="pt-small" id="blog">
           <div className="flex-row gap-regular justify-between">
             <h2 className="text-size-large">{data.blogHeading?.[locale]}</h2>

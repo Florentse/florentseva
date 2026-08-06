@@ -19,7 +19,7 @@ button {
 }
 
 a {
-    font-family: var(--font-family-body);
+  font-family: var(--font-family-body);
   font-size: var(--font-size-body-base);
   color: var(--color-text-primary);
   text-decoration: none;
@@ -34,6 +34,23 @@ a {
   background-color: var(--color-text-primary);
   color: var(--color-bg-primary);
   border-color: var(--color-text-primary);
+  transition: all 0.2s ease-in;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--base-brand);
+      border-color: var(--base-brand);
+      color: white;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      background-color: var(--base-brand);
+      border-color: var(--base-brand);
+      color: white;
+    }
+  }
 }
 
 .button-filled-accent {
@@ -53,7 +70,7 @@ a {
   transition: color 0.15s ease-in;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-color: var(--color-text-primary);
@@ -95,21 +112,21 @@ a {
   gap: 0.5rem;
 
   &::after {
-    font-family: 'Material Symbols Outlined';
+    font-family: "Material Symbols Outlined";
     font-size: inherit;
     line-height: 1;
     content: attr(data-icon);
     margin-top: 0.25rem;
     transition: transform 0.2s ease-out;
     font-variation-settings:
-      'FILL' 0,
-      'wght' 400,
-      'GRAD' 0,
-      'opsz' 24;
+      "FILL" 0,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
   }
 
   &:not([data-icon])::after {
-    content: 'chevron_forward';
+    content: "chevron_forward";
   }
 
   &:focus-visible {

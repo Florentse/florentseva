@@ -25,7 +25,8 @@
 }
 
 .logo {
-  font-size: var(--font-size-body-base);
+  font-family: var(--font-family-logo);
+  font-size: 1.5rem;
   color: var(--color-text-primary);
   text-decoration: none;
   transition: color 0.3s ease;

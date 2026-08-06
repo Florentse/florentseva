@@ -1,9 +1,10 @@
 .hero {
-  min-height: 100svh;
+  min-height: min(100svh, 1080px);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  padding-top: var(--size-160);
+
 }
 
 .worksList {
@@ -13,12 +14,26 @@
   row-gap: var(--gap-huge);
 }
 
-.heroContent {
+.heroSearchWarpper {
   width: 100%;
-  max-width: 75rem;
+  position: relative;
+  max-width: 34.5rem;
+  margin-left: auto;
 }
 
-.clientsList{
+/* Russian placeholder/labels run longer than the English ones */
+.heroSearchWarpperRu {
+  max-width: 37rem;
+}
+
+.heroHeadingWarpper {
+  width: 100%;
+  max-width: 75rem;
+  margin-right: auto;
+  margin-top: auto;
+}
+
+.clientsList {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -41,6 +56,17 @@
   object-fit: contain;
   filter: grayscale(1);
 }
+.productsListWrap {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--gap-regular);
+}
+
+.productsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+}
 
 .blogList {
   display: grid;
@@ -50,12 +76,25 @@
 }
 
 @media (max-width: 1024px) {
+  .hero {
+    min-height: min(100svh, 900px);
+  }
+
   .blogList {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .productsListWrap {
+    display: flex;
   }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: min(100svh, 700px);
+    padding-bottom: 1.5rem;
+  }
+
   .blogList {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -69,5 +108,4 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-
 }

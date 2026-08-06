@@ -1,0 +1,36 @@
+.productsLayout {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--gap-regular);
+  align-items: start;
+  width: 100%;
+}
+
+.productsAside {
+  position: relative;
+  align-self: start;
+  padding-left: var(--gap-small);
+}
+
+.productsList {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .productsAside {
+    position: sticky;
+    top: var(--size-96);
+  }
+}
+
+@media (max-width: 767px) {
+  .productsLayout {
+    grid-template-columns: 1fr;
+    gap: var(--gap-huge);
+  }
+
+  .productsAside {
+    padding-top: var(--size-12);
+    padding-left: 0.75rem;
+  }
+}

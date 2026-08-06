@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { scrollToSection } from "@/lib/scrollToSection";
 import styles from "./ServiceTocNav.module.css";
 
 type NavItem = {
@@ -10,9 +11,10 @@ type NavItem = {
 
 type ServiceTocNavProps = {
   items: NavItem[];
+  className?: string;
 };
 
-export default function ServiceTocNav({ items }: ServiceTocNavProps) {
+export default function ServiceTocNav({ items, className }: ServiceTocNavProps) {
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null);
 
   useEffect(() => {
@@ -38,11 +40,11 @@ export default function ServiceTocNav({ items }: ServiceTocNavProps) {
   }, [items.length]);
 
   function handleClick(id: string) {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(id);
   }
 
   return (
-    <ul className={`${styles.list} filterList`}>
+    <ul className={`${styles.list} filterList ${className ?? ""}`}>
       {items.map((item) => (
         <li key={item.id}>
           <button

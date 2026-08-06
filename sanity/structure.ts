@@ -32,6 +32,13 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("serviceCategory").title("Service Categories"),
       S.documentTypeListItem("product").title("Products"),
       S.listItem()
+        .title("Product Categories")
+        .child(
+          S.documentTypeList("productCategory")
+            .title("Product Categories")
+            .defaultOrdering([{ field: "sortOrder", direction: "asc" }]),
+        ),
+      S.listItem()
         .title("Blog")
         .child(
           S.documentTypeList("article")
@@ -61,5 +68,22 @@ export const structure: StructureResolver = (S) =>
         .title("Privacy Policy")
         .child(
           S.document().schemaType("privacyPolicy").documentId("privacyPolicy"),
+        ),
+      S.divider(),
+
+      S.listItem()
+        .title("Contacts")
+        .child(
+          S.documentTypeList("contactPerson")
+            .title("Contacts")
+            .defaultOrdering([{ field: "firstSeenAt", direction: "desc" }]),
+        ),
+
+      S.listItem()
+        .title("Requests")
+        .child(
+          S.documentTypeList("formRequest")
+            .title("Requests")
+            .defaultOrdering([{ field: "submittedAt", direction: "desc" }]),
         ),
     ]);
