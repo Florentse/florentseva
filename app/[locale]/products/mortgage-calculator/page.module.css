@@ -82,7 +82,7 @@
 
 @media (max-width: 767px) {
   .heroSection {
-    padding-top: var(--size-160);
+    padding-top: 8rem;
   }
 
   .sectionFormText  {

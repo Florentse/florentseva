@@ -31,7 +31,7 @@
 
     .servisesHero{
         padding-top: 10rem;
-        padding-bottom: 6rem;
+        padding-bottom: var(--section-padding-y-small);
     }
 
     .servicesHeader {

@@ -91,7 +91,14 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    min-height: 95svh;
+    padding-top: 7rem;
+  }
+
+  .heroHeadingWarpper {
+    margin-top: 60%;
+    margin-bottom: 1rem;
   }
 
   .blogList {

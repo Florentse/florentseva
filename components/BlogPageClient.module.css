@@ -26,6 +26,10 @@
 }
 
 @media (max-width: 768px) {
+
+  .blogListingSection {
+    padding-top: 8rem;
+  }
   .blogList,
   .blogTopGrid  {
     grid-template-columns: repeat(2, 1fr);

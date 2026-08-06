@@ -81,9 +81,9 @@
   :root {
     --font-size-title-l: 1.75rem;
     --font-size-title-m: 1.55rem;
-    --font-size-title-s: 1.35rem;
+    --font-size-title-s: 1.25rem;
 
-    --font-size-body-base: 1rem;
+    --font-size-body-base: 1.02rem;
     --font-size-body-large: 1.25rem;
     --font-size-body-small: 0.9rem;
   }

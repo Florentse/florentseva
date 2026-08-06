@@ -24,6 +24,9 @@
 }
 
 @media (max-width: 767px) {
+  .productsListing {
+    padding-top: 8rem;
+  }
   .productsLayout {
     grid-template-columns: 1fr;
     gap: var(--gap-huge);

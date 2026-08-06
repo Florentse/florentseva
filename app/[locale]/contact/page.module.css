@@ -58,6 +58,11 @@
 }
 
 @media (max-width: 767px) {
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 0;
+  }
+
   .heroGrid {
     grid-template-columns: 1fr;
     gap: var(--gap-regular);
