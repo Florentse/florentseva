@@ -91,8 +91,8 @@ export default function HomeSearch({ locale, works, services, products, articles
           onChange={(event) => setInputValue(event.target.value)}
           placeholder={
             locale === "ru"
-              ? "Поиск по работам, услугам, продуктам, статьям..."
-              : "Search works, services, products, articles ..."
+              ? "Поиск по услугам, продуктам, статьям..."
+              : "Search services, products, articles ..."
           }
         />
         {inputValue && (
