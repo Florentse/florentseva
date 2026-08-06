@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Tektur } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import "./globals.css";
@@ -56,7 +57,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
