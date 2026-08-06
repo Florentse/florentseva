@@ -123,6 +123,10 @@
     pointer-events: auto;
   }
 
+  .logo {
+    font-size: 1.15rem;
+  }
+
   .menuButton {
     background: none;
     border: none;

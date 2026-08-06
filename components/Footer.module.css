@@ -109,15 +109,22 @@
 
 @media (max-width: 767px) {
   .footerBottom {
+    width: 100%;
     grid-template-columns: 1fr;
     justify-items: flex-start;
-    padding: var(--inner-padding-large) var(--section-padding-x);
+    padding: var(--inner-padding-large) 0;
+    padding-bottom: 3.5rem;
     gap: var(--gap-large);
   }
 
   .brandCol {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .logo {
+    margin-right: auto;
+    font-size: 1.15rem;
   }
 
   .footerNav {
