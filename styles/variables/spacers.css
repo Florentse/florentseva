@@ -3,15 +3,15 @@
   --section-padding-x: 1.25rem;
   --section-padding-y-large: var(--size-160);
   --section-padding-y-regular: var(--size-120);
-  --section-padding-y-small: var(--size-40);
+  --section-padding-y-small: 3rem;
   /* Inner padding (cards, blocks) */
-  --inner-padding-large: var(--size-40);
+  --inner-padding-large: 2.5rem;
   --inner-padding-regular: var(--size-20);
   --inner-padding-small: var(--size-16);
   /* Gaps */
-  --gap-huge: var(--size-80);
-  --gap-large: var(--size-40);
-  --gap-regular: var(--size-20);
-  --gap-small: var(--size-16);
-  --gap-tiny: var(--size-12);
+  --gap-huge: 5rem;
+  --gap-large: 2.5rem;
+  --gap-regular: 1.25rem;
+  --gap-small: 1rem;
+  --gap-tiny: 0.75rem;
 }
