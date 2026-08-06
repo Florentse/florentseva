@@ -142,4 +142,8 @@
   .overviewContent {
     margin-bottom: var(--gap-large);
   }
+
+  .galleryList  {
+    margin-top: 0.5rem;
+  }
 }
