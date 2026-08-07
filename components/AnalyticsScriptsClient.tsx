@@ -84,10 +84,12 @@ export default function AnalyticsScriptsClient({
             })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
 
             ym(${yandexMetricaId}, 'init', {
+              webvisor:true,
               clickmap:true,
-              trackLinks:true,
+              referrer: document.referrer,
+              url: location.href,
               accurateTrackBounce:true,
-              webvisor:true
+              trackLinks:true
             });
           `}
         </Script>
