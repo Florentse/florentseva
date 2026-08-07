@@ -9,6 +9,7 @@ export const siteSettings = defineType({
     {name: 'header', title: 'Header'},
     {name: 'footer', title: 'Footer'},
     {name: 'cookies', title: 'Cookies'},
+    {name: 'analytics', title: 'Analytics'},
   ],
   fields: [
     defineField({
@@ -171,6 +172,28 @@ export const siteSettings = defineType({
           ],
         }),
       ],
+    }),
+
+    defineField({
+      name: 'googleAnalyticsId',
+      title: 'Google Analytics — Measurement ID',
+      description: 'GA4 Measurement ID, e.g. G-XXXXXXXXXX. Loads only after the visitor accepts Analytics cookies.',
+      type: 'string',
+      group: 'analytics',
+    }),
+    defineField({
+      name: 'clarityId',
+      title: 'Microsoft Clarity — Project ID',
+      description: 'Project ID from Microsoft Clarity. Loads only after the visitor accepts Analytics cookies.',
+      type: 'string',
+      group: 'analytics',
+    }),
+    defineField({
+      name: 'yandexMetricaId',
+      title: 'Yandex Metrica — Counter ID',
+      description: 'Numeric counter ID from Yandex Metrica. Loads only after the visitor accepts Analytics cookies.',
+      type: 'string',
+      group: 'analytics',
     }),
   ],
 })
