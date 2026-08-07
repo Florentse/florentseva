@@ -45,6 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...localizedEntry("products/prize-wheel", { changeFrequency: "monthly", priority: 0.7 }),
     ...localizedEntry("blog", { changeFrequency: "daily", priority: 0.7 }),
     ...localizedEntry("privacy-policy", { changeFrequency: "yearly", priority: 0.3 }),
+    ...localizedEntry("cookies-policy", { changeFrequency: "yearly", priority: 0.3 }),
   ];
 
   const workEntries = (works ?? []).flatMap((work) =>

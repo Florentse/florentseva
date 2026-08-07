@@ -32,8 +32,14 @@
     gap: var(--gap-huge);
   }
 
+  .filterList {
+    margin-left: auto;
+  }
+
   .productsAside {
     padding-top: var(--size-12);
     padding-left: 0.75rem;
+    margin-left: auto;
+    margin-top: -2rem;
   }
 }

@@ -92,17 +92,18 @@
 @media (max-width: 768px) {
   .hero {
     padding-bottom: 2rem;
-    min-height: 95svh;
+    min-height: 97svh;
     padding-top: 7rem;
   }
 
   .heroHeadingWarpper {
-    margin-top: 60%;
-    margin-bottom: 1rem;
+    margin-top: auto;
+    margin-bottom: 3rem;
   }
 
   .blogList {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: var(--gap-huge);
   }
 
   .worksList {

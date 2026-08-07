@@ -30,13 +30,17 @@
 @media (max-width: 768px) {
 
     .servisesHero{
-        padding-top: 10rem;
+        padding-top: 8rem !important;
         padding-bottom: var(--section-padding-y-small);
     }
 
     .servicesHeader {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         padding-bottom: var(--gap-large);
+    }
+
+    .filterList {
+        margin-left: auto;
     }
 
     .serviceCategoriesItem {

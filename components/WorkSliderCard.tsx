@@ -54,7 +54,7 @@ export default function WorkSliderCard({
         <div className={styles.worksInfoGrid}>
           <span className="text-size-base text-color-tertiary">Project</span>
           <div className={styles.worksInfoColumn}>
-            <h3 className="text-size-base">{title}</h3>
+            <h3 className="text-size-large">{title}</h3>
             {services && services.length > 0 && (
               <ul className={styles.servicesList}>
                 {services.map((service, index) => (

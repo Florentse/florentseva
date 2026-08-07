@@ -28,6 +28,9 @@
 
 @media (max-width: 768px) {
         .cardArrowIcon { 
-            display: none;
+            opacity: 1;
+            left: 0;
+            bottom: 0;
+            top: auto;
     }
 }

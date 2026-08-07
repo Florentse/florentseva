@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import ProductsPageClient from "@/components/ProductsPageClient";
 
 const PRODUCTS_PAGE_QUERY = `{
@@ -42,7 +43,7 @@ type CategoryDoc = {
 
 const getProductsData = cache(
   async (): Promise<{ products: ProductDoc[]; categories: CategoryDoc[] }> =>
-    client.fetch(PRODUCTS_PAGE_QUERY),
+    nbspDeep(await client.fetch(PRODUCTS_PAGE_QUERY)),
 );
 
 export async function generateMetadata({

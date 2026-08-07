@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import styles from "./page.module.css";
 
 const WORK_PAGE_QUERY = `*[_type == "work" && slug.current == $slug][0]{
@@ -32,7 +33,7 @@ type ScopeItem = {
   description?: Record<string, string>;
 };
 
-const getWork = cache(async (slug: string) => client.fetch(WORK_PAGE_QUERY, { slug }));
+const getWork = cache(async (slug: string) => nbspDeep(await client.fetch(WORK_PAGE_QUERY, { slug })));
 
 function formatLiveUrlLabel(url: string) {
   try {

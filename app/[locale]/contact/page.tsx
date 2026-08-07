@@ -4,6 +4,7 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import { type FormField } from "@/components/ContactFormField";
 import ServiceContactForm from "@/components/ServiceContactForm";
 import styles from "./page.module.css";
@@ -27,7 +28,7 @@ type ContactMethod = {
   url?: string;
 };
 
-const getContactData = cache(async () => client.fetch(CONTACT_PAGE_QUERY));
+const getContactData = cache(async () => nbspDeep(await client.fetch(CONTACT_PAGE_QUERY)));
 
 export async function generateMetadata({
   params,

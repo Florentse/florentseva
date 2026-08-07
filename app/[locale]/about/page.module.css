@@ -129,7 +129,7 @@
   object-fit: cover;
 }
 
-@media (hover: hover) and (pointer: fine) {
+
   .hoverPhotoTrigger:hover .hoverPhotoPreview {
     opacity: 1;
     visibility: visible;
@@ -147,11 +147,11 @@
   .awardRow:hover .awardImageWrap {
     opacity: 1;
   }
-}
+
 
 @media (max-width: 767px) {
   .hero {
-    padding-top: 8rem;
+    padding-top: 8rem !important;
   }
 
   .heroContent {

@@ -1,4 +1,4 @@
-// app/[locale]/privacy-policy/page.tsx
+// app/[locale]/cookies-policy/page.tsx
 
 import { cache } from "react";
 import type { Metadata } from "next";
@@ -8,12 +8,12 @@ import { SITE_URL } from "@/lib/siteUrl";
 import { nbspDeep } from "@/lib/nbsp";
 import styles from "./page.module.css";
 
-const PRIVACY_POLICY_QUERY = `*[_id == "privacyPolicy"][0]{
+const COOKIES_POLICY_QUERY = `*[_id == "cookiesPolicy"][0]{
   title,
   body
 }`;
 
-const getPrivacyPolicyData = cache(async () => nbspDeep(await client.fetch(PRIVACY_POLICY_QUERY)));
+const getCookiesPolicyData = cache(async () => nbspDeep(await client.fetch(COOKIES_POLICY_QUERY)));
 
 const portableTextComponents: PortableTextComponents = {
   marks: {
@@ -38,17 +38,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const privacyPolicy = await getPrivacyPolicyData();
+  const cookiesPolicy = await getCookiesPolicyData();
 
   const title =
-    privacyPolicy?.title?.[locale] ??
-    (locale === "ru" ? "Политика конфиденциальности" : "Privacy Policy");
+    cookiesPolicy?.title?.[locale] ??
+    (locale === "ru" ? "Политика использования Cookie" : "Cookies Policy");
   const description =
     locale === "ru"
-      ? "Политика конфиденциальности florentseva — как собираются, используются и защищаются ваши данные при использовании сайта."
-      : "florentseva's privacy policy — how your data is collected, used, and protected when using this site.";
+      ? "Политика использования cookie florentseva — какие cookie используются на сайте, для чего и как ими управлять."
+      : "florentseva's cookies policy — which cookies this site uses, why, and how to manage them.";
 
-  const url = locale === "ru" ? `${SITE_URL}/ru/privacy-policy` : `${SITE_URL}/privacy-policy`;
+  const url = locale === "ru" ? `${SITE_URL}/ru/cookies-policy` : `${SITE_URL}/cookies-policy`;
 
   return {
     title,
@@ -56,8 +56,8 @@ export async function generateMetadata({
     alternates: {
       canonical: url,
       languages: {
-        en: `${SITE_URL}/privacy-policy`,
-        ru: `${SITE_URL}/ru/privacy-policy`,
+        en: `${SITE_URL}/cookies-policy`,
+        ru: `${SITE_URL}/ru/cookies-policy`,
       },
     },
     openGraph: {
@@ -76,13 +76,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function PrivacyPolicyPage({
+export default async function CookiesPolicyPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const privacyPolicy = await getPrivacyPolicyData();
+  const cookiesPolicy = await getCookiesPolicyData();
 
   return (
     <div className="page-wrapper">
@@ -90,21 +90,21 @@ export default async function PrivacyPolicyPage({
 
       <main>
         <section
-          id="privacy-policy-hero"
+          id="cookies-policy-hero"
           className={`${styles.hero} pt-huge`}
         >
           <h1>
-            {privacyPolicy?.title?.[locale] ??
+            {cookiesPolicy?.title?.[locale] ??
               (locale === "ru"
-                ? "Политика конфиденциальности"
-                : "Privacy Policy")}
+                ? "Политика использования Cookie"
+                : "Cookies Policy")}
           </h1>
         </section>
 
-        <section id="privacy-policy-body" className="pt-small">
+        <section id="cookies-policy-body" className="pt-small">
           <div className={`${styles.body} max-width-large`}>
             <PortableText
-              value={privacyPolicy?.body?.[locale] ?? []}
+              value={cookiesPolicy?.body?.[locale] ?? []}
               components={portableTextComponents}
             />
           </div>

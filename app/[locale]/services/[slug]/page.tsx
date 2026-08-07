@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import ServiceCard from "@/components/ServiceCard";
 import WorkCard from "@/components/WorkCard";
 import ArticleCard from "@/components/ArticleCard";
@@ -137,7 +138,7 @@ function getMinPrice(pricing?: { price?: number }[]) {
   return prices.length ? Math.min(...prices) : undefined;
 }
 
-const getService = cache(async (slug: string) => client.fetch(SERVICE_PAGE_QUERY, { slug }));
+const getService = cache(async (slug: string) => nbspDeep(await client.fetch(SERVICE_PAGE_QUERY, { slug })));
 
 export async function generateMetadata({
   params,

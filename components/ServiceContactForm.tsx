@@ -2,6 +2,7 @@
 
 import { useState, type CSSProperties, type FormEvent } from "react";
 import Link from "next/link";
+import { nbsp } from "@/lib/nbsp";
 import ContactFormField, { type FormField } from "./ContactFormField";
 import TurnstileWidget from "./TurnstileWidget";
 
@@ -232,29 +233,29 @@ function SuccessMessage({
         <p>
           {locale === "ru" ? (
             <>
-              Мы свяжемся с вами по адресу{" "}
+              {nbsp("Мы свяжемся с вами по адресу")}{" "}
               <span className="font-weight-medium">{email}</span>
               {telegram && (
                 <>
                   {" "}
-                  или в Telegram:{" "}
+                  {nbsp("или в Telegram:")}{" "}
                   <span className="font-weight-medium">{telegram}</span>
                 </>
               )}{" "}
-              в течение одного рабочего дня.
+              {nbsp("в течение одного рабочего дня.")}
             </>
           ) : (
             <>
-              We&apos;ll get back to you at{" "}
+              {nbsp("We'll get back to you at")}{" "}
               <span className="font-weight-medium">{email}</span>
               {telegram && (
                 <>
                   {" "}
-                  or in Telegram at{" "}
+                  {nbsp("or in Telegram at")}{" "}
                   <span className="font-weight-medium">{telegram}</span>
                 </>
               )}{" "}
-              within one business day.
+              {nbsp("within one business day.")}
             </>
           )}
         </p>

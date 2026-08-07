@@ -3,14 +3,14 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-small);
+  gap: var(--gap-regular);
   text-decoration: none;
 }
 
 .cardTextWrap {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: var(--gap-small);
 }
 
 .cardImageWrap {

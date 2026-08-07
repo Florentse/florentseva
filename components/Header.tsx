@@ -1,5 +1,6 @@
 // components/Header.tsx
 import { client } from "@/sanity/lib/client";
+import { nbspDeep } from "@/lib/nbsp";
 import HeaderClient from "./HeaderClient";
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
@@ -8,7 +9,7 @@ const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
 }`;
 
 export default async function Header({ locale }: { locale: string }) {
-  const settings = await client.fetch(SITE_SETTINGS_QUERY);
+  const settings = nbspDeep(await client.fetch(SITE_SETTINGS_QUERY));
 
   return (
     <HeaderClient

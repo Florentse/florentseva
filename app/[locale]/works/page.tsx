@@ -2,6 +2,7 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import WorksPageClient from "@/components/WorksPageClient";
 
 const WORKS_PAGE_QUERY = `{
@@ -31,7 +32,7 @@ type ServiceDoc = {
 };
 
 const getWorksData = cache(async (): Promise<{ works: WorkDoc[]; services: ServiceDoc[] }> =>
-  client.fetch(WORKS_PAGE_QUERY),
+  nbspDeep(await client.fetch(WORKS_PAGE_QUERY)),
 );
 
 // Categories with at least one actual work in them — same logic as the

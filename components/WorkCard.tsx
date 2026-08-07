@@ -26,7 +26,7 @@ export default function WorkCard({ title, slug, cardImage, service }: WorkCardPr
           {service}
         </span>
       )}
-      <h3 className="text-size-base">{title}</h3>
+      <h3 className="text-size-large">{title}</h3>
       </div>
     </a>
   )

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import ArticlePageClient from "@/components/ArticlePageClient";
 
 const ARTICLE_PAGE_QUERY = `*[_type == "article" && slug.current == $slug][0]{
@@ -19,7 +20,7 @@ const ARTICLE_PAGE_QUERY = `*[_type == "article" && slug.current == $slug][0]{
   }
 }`;
 
-const getArticle = cache(async (slug: string) => client.fetch(ARTICLE_PAGE_QUERY, { slug }));
+const getArticle = cache(async (slug: string) => nbspDeep(await client.fetch(ARTICLE_PAGE_QUERY, { slug })));
 
 export async function generateMetadata({
   params,

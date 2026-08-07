@@ -10,8 +10,8 @@
   --inner-padding-small: var(--size-16);
   /* Gaps */
   --gap-huge: var(--size-80);
-  --gap-large: 2.5rem;
-  --gap-regular: 1rem;
+  --gap-large: var(--size-40);
+  --gap-regular: var(--size-20);
   --gap-small: 0.85rem;
   --gap-tiny: 0.5rem;
 }

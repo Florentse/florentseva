@@ -27,6 +27,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-family: var(--font-family-body);
+  /* Keeps short dangling words (I, we, and, в, на...) off their own line.
+     Unsupported browsers just ignore this and wrap normally. */
+  text-wrap: pretty;
 }
 
 h1,
@@ -35,6 +38,7 @@ h1,
   font-size: var(--font-size-title-l);
   line-height: var(--line-height-title);
   font-weight: var(--font-weight-default);
+  text-wrap: balance;
 }
 
 h2,
@@ -43,6 +47,7 @@ h2,
   font-size: var(--font-size-title-m);
   line-height: var(--line-height-title);
   font-weight: var(--font-weight-default);
+  text-wrap: balance;
 }
 
 h3,
@@ -51,6 +56,7 @@ h3,
   font-size: var(--font-size-title-s);
   line-height: var(--line-height-title);
   font-weight: var(--font-weight-default);
+  text-wrap: balance;
 }
 
 p {
@@ -59,6 +65,7 @@ p {
   line-height: var(--line-height-body);
   font-weight: var(--font-weight-default);
   color: var(--color-text-secondary);
+  text-wrap: pretty;
 }
 
 .text-size-base {
@@ -97,7 +104,7 @@ p {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
   font-style: normal;
-  font-size: 1.25rem;
+  font-size: var(--size-24) !important;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;

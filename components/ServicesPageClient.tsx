@@ -35,13 +35,13 @@ export default function ServicesPageClient({
       <header>{/* Header */}</header>
 
       <main>
-        <section className={`${styles.servisesHero} pt-large`} id="services-intro">
+        <section className={`${styles.servisesHero} pt-large`} id="services-intro" data-theme="alt">
           <div className="max-width-large">
             <p className="title-style-h2 text-color-primary">{intro?.[locale]}</p>
           </div>
         </section>
 
-        <section className="pt-small" id="services-listing">
+        <section  id="services-listing">
           <div className={styles.servicesHeader}>
             <h1 className="text-size-large">
               {locale === "ru" ? "Услуги" : "Services"}

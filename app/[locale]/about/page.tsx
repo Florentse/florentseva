@@ -6,6 +6,7 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import styles from "./page.module.css";
 
 const ABOUT_PAGE_QUERY = `*[_id == "about"][0]{
@@ -25,7 +26,7 @@ const ABOUT_PAGE_QUERY = `*[_id == "about"][0]{
   }
 }`;
 
-const getAboutData = cache(async () => client.fetch(ABOUT_PAGE_QUERY));
+const getAboutData = cache(async () => nbspDeep(await client.fetch(ABOUT_PAGE_QUERY)));
 
 type Stat = {
   value?: string;

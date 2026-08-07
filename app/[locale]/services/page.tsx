@@ -4,6 +4,7 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import ServicesPageClient from "@/components/ServicesPageClient";
 
 const SERVICES_PAGE_QUERY = `{
@@ -32,7 +33,7 @@ type CategoryDoc = {
 
 const getServicesData = cache(
   async (): Promise<{ page: { intro?: Record<string, string> } | null; categories: CategoryDoc[] }> =>
-    client.fetch(SERVICES_PAGE_QUERY),
+    nbspDeep(await client.fetch(SERVICES_PAGE_QUERY)),
 );
 
 function getMinPrice(pricing?: PricingTier[]): number | undefined {

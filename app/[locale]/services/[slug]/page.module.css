@@ -345,7 +345,7 @@
 @media (max-width: 767px) {
 .heroSection {
   padding-top: 8rem;
-  padding-bottom: 6rem;
+  padding-bottom: 5rem;
 }
 
 .heroContent,
@@ -368,6 +368,7 @@
 
   .caseStudiesGrid {
     grid-template-columns: 1fr;
+    gap: var(--gap-huge);
   }
 
   .connectionsGrid {

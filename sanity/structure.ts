@@ -69,6 +69,11 @@ export const structure: StructureResolver = (S) =>
         .child(
           S.document().schemaType("privacyPolicy").documentId("privacyPolicy"),
         ),
+      S.listItem()
+        .title("Cookies Policy")
+        .child(
+          S.document().schemaType("cookiesPolicy").documentId("cookiesPolicy"),
+        ),
       S.divider(),
 
       S.listItem()

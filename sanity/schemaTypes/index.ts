@@ -26,6 +26,7 @@ import { servicesPage } from './documents/servicesPage'
 import { about} from './documents/about' 
 
 import { privacyPolicy } from './documents/privacyPolicy'
+import { cookiesPolicy } from './documents/cookiesPolicy'
 import { siteSettings } from './documents/siteSettings'
 
 
@@ -38,5 +39,5 @@ import { formRequest } from './documents/formRequest'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [localeString, localeText, localePortableText, seo, headingParagraphItem, formField, faqItem, checklistBlock, productLinkBlock, liveDemoBlock, pageAnatomyBlock, sitemapBuilderBlock, scopeBuilderBlock, service, serviceCategory, work, client, blogCategory, articleSection,  connectionsGridBlock, article, productCategory, product, home, servicesPage, about, contact, privacyPolicy, siteSettings, contactPerson, formRequest, storeQuizBlock ],
+  types: [localeString, localeText, localePortableText, seo, headingParagraphItem, formField, faqItem, checklistBlock, productLinkBlock, liveDemoBlock, pageAnatomyBlock, sitemapBuilderBlock, scopeBuilderBlock, service, serviceCategory, work, client, blogCategory, articleSection,  connectionsGridBlock, article, productCategory, product, home, servicesPage, about, contact, privacyPolicy, cookiesPolicy, siteSettings, contactPerson, formRequest, storeQuizBlock ],
 }

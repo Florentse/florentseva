@@ -30,13 +30,19 @@
   .blogListingSection {
     padding-top: 8rem;
   }
-  .blogList,
+  
   .blogTopGrid  {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blogList {
+    grid-template-columns: 1fr;
+    gap: var(--gap-huge);
   }
 
   .blogAside {
-    margin-top: var(--size-48);
+    margin-top: -1rem;
     align-items: flex-end;
   }
 }

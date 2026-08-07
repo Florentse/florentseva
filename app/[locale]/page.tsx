@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { SITE_URL } from "@/lib/siteUrl";
+import { nbspDeep } from "@/lib/nbsp";
 import styles from "./page.module.css";
 import WorkCard from "@/components/WorkCard";
 import workCardStyles from "@/components/WorkCard.module.css";
@@ -44,7 +45,7 @@ const HOME_QUERY = `{
   "siteSettings": *[_type == "siteSettings"][0]{ defaultSeo }
 }`;
 
-const getHomeData = cache(async () => client.fetch(HOME_QUERY));
+const getHomeData = cache(async () => nbspDeep(await client.fetch(HOME_QUERY)));
 
 export async function generateMetadata({
   params,
