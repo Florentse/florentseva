@@ -79,8 +79,8 @@
 /* Mobile */
 @media (max-width: 767px) {
   :root {
-    --font-size-title-l: 1.75rem;
-    --font-size-title-m: 1.55rem;
+    --font-size-title-l: 2rem;
+    --font-size-title-m: 1.75rem;
     --font-size-title-s: 1.25rem;
 
     --font-size-body-base: 1.05rem;
