@@ -132,10 +132,9 @@ defineField({
     defineField({
       name: 'cardImages',
       title: 'Card Images (slider card)',
-      description: 'Up to 4 images used for the slider card on the Works listing page',
+      description: 'Images used for the slider card on the Works listing page',
       type: 'array',
       of: [{type: 'image', options: {hotspot: true}}],
-      validation: (Rule) => Rule.max(4),
       group: 'card',
     }),
     defineField({
